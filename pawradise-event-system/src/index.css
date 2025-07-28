@@ -3,3 +3,59 @@
 @tailwind components;
 @tailwind utilities;
 
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.overlay-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  top: 40%;
+  padding: 0 20px;
+}
+
+.overlay-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.overlay-text p {
+  font-size: 1.5rem;
+}
+
+.overlay-text {
+  position: relative;
+  z-index: 2;
+  color: #080232; /* Change to any color you want */
+  text-align: center;
+  top: 40%;
+  padding: 0 20px;
+  
+}
+.overlay-text h1 {
+  font-size: 3rem; /* Increase or decrease as needed */
+  font-weight: bold;
+}
+
+.overlay-text p {
+  font-size: 2rem;
+}
+
+
+
+
