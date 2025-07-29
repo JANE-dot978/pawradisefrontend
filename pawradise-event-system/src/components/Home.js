@@ -55,6 +55,26 @@ const Home = () => {
   </div>
 </div>
 
+{/* WHY PAWRADISE Section */}
+<section className="bg-gray-100 py-12 px-6 text-center">
+  <h2 className="text-3xl font-extrabold mb-8 text-gray-800">Why Pawradise?</h2>
+  <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h3 className="text-xl font-bold mb-2">Pet-Friendly Events</h3>
+      <p className="text-gray-600">We create safe, exciting environments where dogs can have fun and socialize.</p>
+    </div>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h3 className="text-xl font-bold mb-2">Meet Dog Lovers</h3>
+      <p className="text-gray-600">Connect with a community of pet parents who love dogs just as much as you do!</p>
+    </div>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-bold mb-2">Easy Booking</h3>
+      <p className="text-gray-600 text-2xl">Book events in just a few clicks with our user-friendly system.</p>
+    </div>
+  </div>
+</section>
+
+
     </div>
   );
 };
