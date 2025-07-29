@@ -8,6 +8,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  margin-top: 5%;
 }
 
 .bg-video {
@@ -18,43 +19,37 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  filter: brightness(1.1) contrast(1.5); /* optional clarity boost */
 }
 
+
 .overlay-text {
-  position: relative;
+  position: absolute;
+   top: 0; 
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.3); /* adjust transparency */
   z-index: 2;
-  color: white;
+   color: #f6f5f9; /* Change to any color you want */
   text-align: center;
-  top: 40%;
-  padding: 0 20px;
 }
 
 .overlay-text h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.overlay-text p {
-  font-size: 1.5rem;
-}
-
-.overlay-text {
-  position: relative;
-  z-index: 2;
-  color: #080232; /* Change to any color you want */
-  text-align: center;
-  top: 40%;
-  padding: 0 20px;
-  
-}
-.overlay-text h1 {
-  font-size: 3rem; /* Increase or decrease as needed */
+  font-size: 3rem; 
   font-weight: bold;
+  margin-top: 3%;
+  color: blueviolet;
+}
+.overlay-text h2{
+    font-size: 2rem;
 }
 
 .overlay-text p {
-  font-size: 2rem;
+  font-size: 3rem;
+  color: green;
 }
+
 
 
 
