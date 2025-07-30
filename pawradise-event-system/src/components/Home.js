@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import video from "../components/dog show.mp4";
 import myImage from "../components/ceo.jpg"; // Add your image
 import Image from "../components/mandog.jpg";
@@ -34,7 +35,7 @@ const Home = () => {
             Explore, book, and enjoy fun dog-friendly events with our trusted platform.
           </p>
           <br />
-          <button className="mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300">
+          <button className="mt-6 bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300">
             Explore Events
           </button>
         </div>
@@ -60,7 +61,7 @@ const Home = () => {
 </div>
 
 {/* WHY PAWRADISE Section */}
-<section className="bg-gray-100 py-12 px-6 text-center">
+<section className="bg-white py-12 px-6 text-center">
   <h2 className="text-5xl font-extrabold mb-8 text-black">Why Pawradise?</h2>
   <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
     <div className="bg-white p-10 rounded-lg shadow-lg">
@@ -141,6 +142,21 @@ const Home = () => {
 
   </div>
 </section>
+{/* CALL TO ACTION Section */}
+<section className="bg-white py-16 px-6 text-center">
+  <div className="max-w-2xl mx-auto">
+    <h2 className="text-5xl font-extrabold text-black mb-4">Ready to Treat Your Dog?</h2>
+    <p className="text-3xl text-gray-700 mb-6">
+      Join our growing Pawradise family and give your pup the adventure they deserve!
+    </p>
+    <Link to="/events">
+      <button className="bg-blue-700 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+        Book Your First Event 🐶
+      </button>
+    </Link>
+  </div>
+</section>
+
 
 
 
