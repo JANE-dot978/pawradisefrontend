@@ -94,7 +94,7 @@ const Home = () => {
 </section>
 {/* TESTIMONIALS Section */}
 <section className="bg-white py-16 px-6 text-center">
-  <h2 className="text-3xl font-extrabold text-gray-800 mb-10">What Dog Owners Say</h2>
+  <h2 className="text-5xl font-extrabold text-black mb-10">What Dog Owners Say</h2>
   <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
     
     {/* Testimonial 1 */}
