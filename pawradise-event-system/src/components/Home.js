@@ -5,6 +5,23 @@ import myImage from "../components/ceo.jpg"; // Add your image
 import Image from "../components/mandog.jpg";
 import Image1 from "../components/mandogsss.webp";
 import Image2 from "../components/womandog.jpg";
+import Image3 from "../components/black women with dogs.jpg";
+import Imagea from "../components/gallery1.jpg";
+import Imageb from "../components/gallery2.jpg";
+import Imagec from "../components/gallery3.jpg";
+import Imaged from "../components/gallery4.jpg";
+import Imagee from "../components/gallery5.jpg";
+import Imagef from "../components/gallery6.jpg";
+import Imageg from "../components/gallery7.jpg";
+import Imageh from "../components/gallery 8.jpg";
+import Imagei from "../components/gallery9.jpg";
+import Imagej from "../components/galley10.jpeg";
+import Imagek from "../components/gallery11.jpeg";
+import Imagel from "../components/gallery13.jpg";
+import Imagem from "../components/gallery12.jpg";
+import Imagen from"../components/gallery14.jpg";
+import Imageo from"../components/gallery15.jpg";
+
 
 
 const Home = () => {
@@ -143,20 +160,63 @@ const Home = () => {
   </div>
 </section>
 {/* CALL TO ACTION Section */}
-<section className="bg-white py-16 px-6 text-center">
-  <div className="max-w-2xl mx-auto">
-    <h2 className="text-5xl font-extrabold text-black mb-4">Ready to Treat Your Dog?</h2>
-    <p className="text-3xl text-gray-700 mb-6">
-      Join our growing Pawradise family and give your pup the adventure they deserve!
-    </p>
-    <Link to="/events">
-      <button className="bg-blue-700 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+<section className="bg-white py-16 px-6">
+  <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 text-center md:text-left">
+    
+    {/* Text content */}
+    <div className="md:w-1/2">
+      <h2 className="text-5xl font-extrabold text-gray-800 mb-4">
+        Ready to Treat Your Dog?
+      </h2>
+      <p className="text-3xl text-black mb-6">
+        Join our growing Pawradise family and give your pup the adventure they deserve!
+      </p>
+      <Link
+        to="/events"
+        className="bg-blue-700 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block"
+      >
         Book Your First Event 🐶
-      </button>
-    </Link>
+      </Link>
+    </div>
+
+    {/* Side image */}
+    <div className="md:w-1/2">
+      <img
+       src={Image3}
+        alt="People and dogs enjoying an event"
+        className="rounded-lg shadow-md w-full object-cover max-h-[400px]"
+      />
+    </div>
   </div>
 </section>
 
+<section className="bg-white py-16 px-6">
+  <div className="max-w-6xl mx-auto text-center">
+    <h2 className="text-5xl font-extrabold text-gray-800 mb-4">Moments from Pawradise 🐾</h2>
+    <p className="text-gray-600 mb-10 text-2xl">
+      A glimpse into our fun-filled dog events captured with wagging tails and happy faces!<br></br>
+      The unforgettable momments
+    </p>
+
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <img src={Imagee} alt="Dog nd owner happy momments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imageb} alt=" dogs  with owners during event" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagec} alt="happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imaged} alt="Puppy showcasing skills" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagek} alt="owners after at event" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagef} alt="Dogs happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imageg} alt="owner with a dog and medal" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagem} alt="Owner hugging a dog" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagei} alt="after grooming session happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagej} alt="happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagea} alt="happy puppies and owners" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagel} alt="kid and dog shoot session" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imageh} alt="dog jumping" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imagen} alt="moments after dog walks" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+      <img src={Imageo} alt="happy dog with a kid running" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+    </div>
+  </div>
+</section>
 
 
 
