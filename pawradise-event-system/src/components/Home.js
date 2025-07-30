@@ -57,20 +57,35 @@ const Home = () => {
 
 {/* WHY PAWRADISE Section */}
 <section className="bg-gray-100 py-12 px-6 text-center">
-  <h2 className="text-3xl font-extrabold mb-8 text-gray-800">Why Pawradise?</h2>
-  <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-xl font-bold mb-2">Pet-Friendly Events</h3>
-      <p className="text-gray-600">We create safe, exciting environments where dogs can have fun and socialize.</p>
+  <h2 className="text-5xl font-extrabold mb-8 text-black">Why Pawradise?</h2>
+  <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div className="bg-white p-10 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Pet-Friendly Events 🐶</h3>
+      <p className="text-blue-700 text-3xl">We create safe, exciting environments where dogs can have fun and socialize.</p>
     </div>
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-xl font-bold mb-2">Meet Dog Lovers</h3>
-      <p className="text-gray-600">Connect with a community of pet parents who love dogs just as much as you do!</p>
+    <div className="bg-white p-10 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Meet Dog Lovers 👩‍👩‍👦‍👦</h3>
+      <p className="text-blue-700 text-3xl">Connect with a community of pet parents who love dogs just as much as you do!</p>
     </div>
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-bold mb-2">Easy Booking</h3>
-      <p className="text-gray-600 text-2xl">Book events in just a few clicks with our user-friendly system.</p>
+    <div className="bg-white p-10 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Easy Booking📳</h3>
+      <p className="text-blue-700 text-3xl">Book events in just a few clicks with our user-friendly system.</p>
     </div>
+    <div className="bg-white p-10 rounded-lg shadow-lg">
+  <h3 className="text-2xl font-bold mb-4">Expert Training Tips🎓</h3>
+  <p className=" text-blue-700 text-3xl">
+    Our platform offers access to events hosted by certified trainers and behaviorists
+  </p>
+</div>
+<div className="bg-white p-10 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Tailored Experiences 🎯</h3>
+      <p className="text-blue-700 text-3xl">Find events that match your dog’s breed, energy level, and interests for a truly personal experience</p>
+    </div>
+    <div className="bg-white p-10 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-bold mb-4"> Trusted by Dog Lovers🐾</h3>
+      <p className="text-blue-700 text-3xl">Hundreds of pet owners trust Pawradise to deliver safe and joyful events every month.</p>
+    </div>
+
   </div>
 </section>
 
