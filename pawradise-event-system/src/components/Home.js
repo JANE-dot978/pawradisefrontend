@@ -1,6 +1,10 @@
 import React from "react";
 import video from "../components/dog show.mp4";
 import myImage from "../components/ceo.jpg"; // Add your image
+import Image from "../components/mandog.jpg";
+import Image1 from "../components/mandogsss.webp";
+import Image2 from "../components/womandog.jpg";
+
 
 const Home = () => {
   return (
@@ -88,6 +92,56 @@ const Home = () => {
 
   </div>
 </section>
+{/* TESTIMONIALS Section */}
+<section className="bg-white py-16 px-6 text-center">
+  <h2 className="text-3xl font-extrabold text-gray-800 mb-10">What Dog Owners Say</h2>
+  <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    
+    {/* Testimonial 1 */}
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+      <img
+        src={Image1}
+        alt="User 1"
+        className="w-20 h-20 mx-auto mb-4 rounded-full object-cover"
+      />
+      <h3 className="text-lg font-semibold text-gray-700">Jane M.</h3>
+      <p className="text-black italic mt-2 text-2xl">
+        “Pawradise helped my pup make so many new friends. The events are well organized and so much fun!”
+      </p>
+      <p className="mt-3 text-yellow-500">⭐⭐⭐⭐⭐</p>
+    </div>
+
+    {/* Testimonial 2 */}
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+      <img
+       src={Image2}
+        alt="User 2"
+        className="w-20 h-20 mx-auto mb-4 rounded-full object-cover"
+      />
+      <h3 className="text-lg font-semibold text-gray-700">Brian O.</h3>
+      <p className="text-black italic mt-2 text-2xl">
+        “The booking system is so easy to use. I never miss a dog event anymore. Highly recommend!”
+      </p>
+      <p className="mt-3 text-yellow-500">⭐⭐⭐⭐</p>
+    </div>
+
+    {/* Testimonial 3 */}
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+      <img
+       src={Image}
+        alt="User 3"
+        className="w-20 h-20 mx-auto mb-4 rounded-full object-cover"
+      />
+      <h3 className="text-lg font-semibold text-gray-700">Aisha L.</h3>
+      <p className="text-black italic mt-2 text-2xl">
+        “Such a brilliant idea. My dog is always excited whenever we attend Pawradise events.”
+      </p>
+      <p className="mt-3 text-yellow-500">⭐⭐⭐⭐⭐</p>
+    </div>
+
+  </div>
+</section>
+
 
 
     </div>
