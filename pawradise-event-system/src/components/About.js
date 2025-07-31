@@ -75,6 +75,56 @@ const About = ()=>{
   </div>
 </section>
 
+<section className="bg-pink-50 py-20 px-6">
+  <div className="max-w-7xl mx-auto text-center">
+    <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">What We Do</h2>
+    <p className="text-3xl text-black max-w-4xl mx-auto mb-12">
+      At Pawradise, we believe every dog deserves joy, adventure, and love. From exciting events to bonding activities, here's what we do to make tails wag!
+    </p>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      {/* Card 1 */}
+      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
+        <div className="text-5xl mb-4">🐕</div>
+        <h3 className="text-3xl font-semibold mb-2 text-black">Dog Meetups</h3>
+        <p className="text-black text-2xl">Fun social gatherings where dogs (and their humans!) meet, play, and make new furry friends.</p>
+      </div>
+
+      {/* Card 2 */}
+      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
+        <div className="text-5xl mb-4">🎓</div>
+        <h3 className="text-3xl font-semibold mb-2 text-black">Training Sessions</h3>
+        <p className="text-black text-2xl">Group classes designed to build trust, improve behavior, and strengthen your bond.</p>
+      </div>
+
+      {/* Card 3 */}
+      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
+        <div className="text-5xl mb-4">🎉</div>
+        <h3 className="text-3xl font-semibold mb-2 text-black">Themed Events</h3>
+        <p className="text-black text-2xl">From doggy birthdays to costume parades, we celebrate every moment with style and joy.</p>
+      </div>
+
+      {/* Card 4 */}
+      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
+        <div className="text-5xl mb-4">🏞️</div>
+        <h3 className="text-3xl font-semibold mb-2 text-black">Outdoor Adventures</h3>
+        <p className="text-black text-2xl">Join us for walks, hikes, and exciting outdoor explorations tailored to active pups.</p>
+      </div>
+    </div>
+
+    {/* CTA Button */}
+    <div className="mt-12">
+      <Link
+        to="/events"
+        className="inline-block bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow transition duration-300"
+      >
+        Explore Upcoming Events
+      </Link>
+    </div>
+  </div>
+</section>
+
+
 </div>
 
     )
