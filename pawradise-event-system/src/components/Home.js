@@ -59,7 +59,7 @@ const Home = () => {
       </div>
 
       {/* ABOUT Section: Visible below the video */}
-<div className="bg-white text-gray-800 py-12 px-6 md:px-20 flex flex-col md:flex-row items-center md:items-start md:gap-4 mx-auto">
+<div className="bg-pink-50 text-gray-800 py-12 px-6 md:px-20 flex flex-col md:flex-row items-center md:items-start md:gap-4 mx-auto">
   <img
     src={myImage}
     alt="You holding a dog at an event"
@@ -78,7 +78,7 @@ const Home = () => {
 </div>
 
 {/* WHY PAWRADISE Section */}
-<section className="bg-white py-12 px-6 text-center">
+<section className="bg-pink-50 py-12 px-6 text-center">
   <h2 className="text-5xl font-extrabold mb-8 text-black">Why Pawradise?</h2>
   <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
     <div className="bg-white p-10 rounded-lg shadow-lg">
@@ -111,7 +111,7 @@ const Home = () => {
   </div>
 </section>
 {/* TESTIMONIALS Section */}
-<section className="bg-white py-16 px-6 text-center">
+<section className="bg-pink-50 py-16 px-6 text-center">
   <h2 className="text-5xl font-extrabold text-black mb-10">What Dog Owners Say</h2>
   <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
     
@@ -160,7 +160,7 @@ const Home = () => {
   </div>
 </section>
 {/* CALL TO ACTION Section */}
-<section className="bg-white py-16 px-6">
+<section className="bg-pink-50 py-16 px-6">
   <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 text-center md:text-left">
     
     {/* Text content */}
@@ -190,7 +190,7 @@ const Home = () => {
   </div>
 </section>
 
-<section className="bg-white py-16 px-6">
+<section className="bg-pink-50 py-16 px-6">
   <div className="max-w-6xl mx-auto text-center">
     <h2 className="text-5xl font-extrabold text-gray-800 mb-4">Moments from Pawradise 🐾</h2>
     <p className="text-gray-600 mb-10 text-2xl">
