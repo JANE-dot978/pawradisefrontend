@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import image from "../components/many dogs.jpg";
 // import image1 from "../components/shiku.jpg";
 import image2 from "../components/dogwalks.webp";
+import image3 from "../components/founder.jpg";
+import image4 from "../components/eventc.jpg";
+import image5 from "../components/eventc2.jpg";
 
 const About = ()=>{
     return (
@@ -123,6 +126,60 @@ const About = ()=>{
     </div>
   </div>
 </section>
+
+<section className="bg-pink-50 py-16 px-6">
+  <div className="max-w-7xl mx-auto text-center">
+    <h2 className="text-5xl font-bold text-gray-800 mb-4">Meet the Team 🐶</h2>
+    <p className="text-3xl text-gray-600 mb-10">
+      Our team is made up of passionate dog lovers dedicated to creating joyful experiences for pets and their people.
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {/* Team Member 1 */}
+      <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        <img
+          src={image3}
+          alt="Founder"
+          className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
+        />
+        <h3 className="text-3xl font-semibold text-gray-800">Jane Gathu</h3>
+        <p className="text-pink-600 font-medium text-2xl">Founder & Dog Mom</p>
+        <p className="text-gray-600 mt-2 text-2xl">
+          "Bringing dogs and people together is my life's joy."
+        </p>
+      </div>
+
+      {/* Team Member 2 */}
+      <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        <img
+          src={image4}
+          alt="Event Planner"
+          className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
+        />
+        <h3 className="text-3xl font-semibold text-gray-800">Brian Otieno</h3>
+        <p className="text-pink-600 font-medium text-2xl">Event Coordinator</p>
+        <p className="text-gray-600 mt-2 text-2xl">
+          "Every tail wag and happy bark is worth the work."
+        </p>
+      </div>
+
+      {/* Team Member 3 */}
+      <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+        <img
+          src={image5}
+          alt="Trainer"
+          className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
+        />
+        <h3 className="text-3xl font-semibold text-gray-800">Azaan Kiarie</h3>
+        <p className="text-pink-600 font-medium text-2xl">Dog Trainer</p>
+        <p className="text-gray-600 mt-2 text-2xl">
+          "I help pups find confidence and fun through training!"
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 </div>
