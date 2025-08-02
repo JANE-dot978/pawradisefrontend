@@ -7,6 +7,7 @@ import image3 from "../components/founder.jpg";
 import image4 from "../components/eventc.jpg";
 import image5 from "../components/eventc2.jpg";
 
+
 const About = ()=>{
     return (
         <div>
@@ -142,7 +143,7 @@ const About = ()=>{
           alt="Founder"
           className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
         />
-        <h3 className="text-3xl font-semibold text-gray-800">Jane Gathu</h3>
+        <h3 className="text-3xl font-semibold text-gray-800">Jane Wanjiku</h3>
         <p className="text-pink-600 font-medium text-2xl">Founder & Dog Mom</p>
         <p className="text-gray-600 mt-2 text-2xl">
           "Bringing dogs and people together is my life's joy."
@@ -156,7 +157,7 @@ const About = ()=>{
           alt="Event Planner"
           className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
         />
-        <h3 className="text-3xl font-semibold text-gray-800">Brian Otieno</h3>
+        <h3 className="text-3xl font-semibold text-gray-800">Nelson Ndung'u</h3>
         <p className="text-pink-600 font-medium text-2xl">Event Coordinator</p>
         <p className="text-gray-600 mt-2 text-2xl">
           "Every tail wag and happy bark is worth the work."
@@ -177,6 +178,58 @@ const About = ()=>{
         </p>
       </div>
     </div>
+  </div>
+</section>
+
+<section className="relative py-20 px-6 bg-pink-50">
+  {/* Content wrapper */}
+  <div className="relative z-10 max-w-7xl mx-auto text-center mb-12">
+    <h2 className="text-5xl font-bold text-gray-800">Why Pawradise is Different 🐶</h2>
+    <p className="text-gray-600 mt-4 text-3xl">
+      At Pawradise, we go beyond events we create unforgettable moments between dogs and their humans 🐾❤️
+    </p>
+  </div>
+
+  {/* Cards */}
+  <div className="relative z-10 grid sm:grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    {/* Card 1 */}
+    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+      <h3 className="text-2xl font-semibold text-pink-600 mb-3">🎯 Tailored Events for Every Pup</h3>
+      <p className="text-gray-600 text-2xl">
+        From shy pups to energetic furballs, we design events that suit every dog’s personality and needs.
+      </p>
+    </div>
+
+    {/* Card 2 */}
+    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+      <h3 className="text-2xl font-semibold text-pink-600 mb-3">🛡️ Certified & Safe Spaces</h3>
+      <p className="text-gray-600 text-2xl">
+        Our venues are clean, secure, and supervised by trained staff to ensure total comfort and security.
+      </p>
+    </div>
+
+    {/* Card 3 */}
+    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+      <h3 className="text-3xl font-semibold text-pink-600 mb-3">👩‍⚕️ Trained Handlers On Site</h3>
+      <p className="text-gray-600 text-2xl">
+        Every dog deserves love and care — our handlers ensure every tail keeps wagging safely.
+      </p>
+    </div>
+
+    {/* Card 4 */}
+    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+      <h3 className="text-2xl font-semibold text-pink-600 mb-3">🎁 Surprise Treats & Giveaways</h3>
+      <p className="text-gray-600 text-2xl">
+        Every event features pawsome goodies, treats, and surprises that make tails wag and hearts melt!
+      </p>
+    </div>
+  </div>
+
+  {/* Quote */}
+  <div className="relative z-10 mt-16 text-center">
+    <blockquote className="italic text-2xl text-gray-700 max-w-2xl mx-auto">
+      “Dogs are not our whole life, but they make our lives whole.” Roger Caras 🐾
+    </blockquote>
   </div>
 </section>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import video from "../components/dog show.mp4";
-import myImage from "../components/ceo.jpg"; // Add your image
+import myImage from "../components/ceo.jpg"; 
 import Image from "../components/mandog.jpg";
 import Image1 from "../components/mandogsss.webp";
 import Image2 from "../components/womandog.jpg";
@@ -217,7 +217,6 @@ const Home = () => {
     </div>
   </div>
 </section>
-
 
 
     </div>
