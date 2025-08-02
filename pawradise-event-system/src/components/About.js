@@ -24,7 +24,7 @@ const About = ()=>{
       </p>
       <Link
         to="/events"
-        className="inline-block bg-blue-700 hover:bg-blue-400 text-white font-semibold py-3 px-6 rounded-full shadow transition duration-300"
+        className="inline-block bg-pink-600 hover:bg-pink-400 text-white font-semibold py-3 px-6 rounded-full shadow transition duration-300"
       >
         See Upcoming Events
       </Link>

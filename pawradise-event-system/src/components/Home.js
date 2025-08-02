@@ -52,7 +52,7 @@ const Home = () => {
             Explore, book, and enjoy fun dog-friendly events with our trusted platform.
           </p>
           <br />
-          <button className="mt-6 bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300">
+          <button className="mt-6 bg-pink-600 hover:bg-pink-400 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300">
             Explore Events
           </button>
         </div>
