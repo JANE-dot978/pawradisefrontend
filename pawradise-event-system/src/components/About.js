@@ -232,6 +232,56 @@ const About = ()=>{
     </blockquote>
   </div>
 </section>
+<section className="relative py-20 px-6 bg-white">
+  <div className="relative z-10 max-w-7xl mx-auto text-center mb-12">
+    <h2 className="text-4xl font-bold text-gray-800">🐾 Behind the Scenes at Pawradise</h2>
+    <p className="text-gray-600 mt-4 text-lg">
+      Peek into the pawsitive chaos, joy, and pure doggy delight that happens when the cameras aren’t rolling!
+    </p>
+  </div>
+
+  {/* Gallery grid */}
+  <div className="relative z-10 grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <img
+      src="/images/gallery1.jpg"
+      alt="Behind the scenes 1"
+      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+    />
+    <img
+      src="/images/gallery2.jpg"
+      alt="Behind the scenes 2"
+      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+    />
+    <img
+      src="/images/gallery3.jpg"
+      alt="Behind the scenes 3"
+      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+    />
+    <img
+      src="/images/gallery4.jpg"
+      alt="Behind the scenes 4"
+      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+    />
+    <img
+      src="/images/gallery5.jpg"
+      alt="Behind the scenes 5"
+      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+    />
+    <img
+      src="/images/gallery6.jpg"
+      alt="Behind the scenes 6"
+      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+    />
+  </div>
+
+  {/* CTA */}
+  <div className="relative z-10 mt-12 text-center">
+    <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300">
+      View Full Gallery 🐶📸
+    </button>
+  </div>
+</section>
+
 
 
 
