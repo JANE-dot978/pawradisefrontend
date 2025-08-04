@@ -234,8 +234,8 @@ const About = ()=>{
 </section>
 <section className="relative py-20 px-6 bg-white">
   <div className="relative z-10 max-w-7xl mx-auto text-center mb-12">
-    <h2 className="text-4xl font-bold text-gray-800">🐾 Behind the Scenes at Pawradise</h2>
-    <p className="text-gray-600 mt-4 text-lg">
+    <h2 className="text-5xl font-bold text-black">🐾 Behind the Scenes at Pawradise</h2>
+    <p className="text-gray-600 mt-4 text-3xl">
       Peek into the pawsitive chaos, joy, and pure doggy delight that happens when the cameras aren’t rolling!
     </p>
   </div>
