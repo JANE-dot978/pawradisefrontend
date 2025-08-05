@@ -32,7 +32,7 @@ const Navbar = () => {
           <img src={logo} alt="company logo" className="h-16 w-32 object-contain" />
           <div
             className={`text-xl md:text-3xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-blue-600' : 'text-white'
+              isScrolled ? 'text-pink-700' : 'text-white'
             }`}
           >
             PawradiseEventSystem
