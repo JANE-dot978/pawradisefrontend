@@ -1,7 +1,6 @@
-// import react from "react";
+
 import { Link } from "react-router-dom";
-import image from "../components/many dogs.jpg";
-// import image1 from "../components/shiku.jpg";
+import image from "../components/many dogs.jpg"
 import image2 from "../components/dogwalks.webp";
 import image3 from "../components/founder.jpg";
 import image4 from "../components/eventc.jpg";
@@ -45,7 +44,7 @@ const About = ()=>{
 <section className="bg-pink-50 py-20 px-6">
   <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
     
-    {/* Image Part */}
+  
     <div className="flex justify-center">
       <img
         src={image2}
