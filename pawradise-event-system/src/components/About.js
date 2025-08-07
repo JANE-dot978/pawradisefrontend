@@ -189,7 +189,7 @@ const About = ()=>{
     </p>
   </div>
 
-  {/* Cards */}
+
   <div className="relative z-10 grid sm:grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
     {/* Card 1 */}
     <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
@@ -199,7 +199,7 @@ const About = ()=>{
       </p>
     </div>
 
-    {/* Card 2 */}
+  
     <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
       <h3 className="text-2xl font-semibold text-pink-600 mb-3">🛡️ Certified & Safe Spaces</h3>
       <p className="text-gray-600 text-2xl">
@@ -207,7 +207,7 @@ const About = ()=>{
       </p>
     </div>
 
-    {/* Card 3 */}
+  
     <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
       <h3 className="text-3xl font-semibold text-pink-600 mb-3">👩‍⚕️ Trained Handlers On Site</h3>
       <p className="text-gray-600 text-2xl">
