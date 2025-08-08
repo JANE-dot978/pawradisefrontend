@@ -149,7 +149,6 @@ const About = ()=>{
         </p>
       </div>
 
-      {/* Team Member 2 */}
       <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
         <img
           src={image4}
@@ -163,7 +162,7 @@ const About = ()=>{
         </p>
       </div>
 
-      {/* Team Member 3 */}
+    
       <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
         <img
           src={image5}
