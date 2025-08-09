@@ -13,7 +13,7 @@ const About = ()=>{
 <section className="bg-pink-50 from-pink-100 via-white to-pink-100 pt-32 pb-16 px-6">
   <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center">
     
-    {/* Text content */}
+  
     <div className="text-center md:text-left">
       <h1 className="text-4xl md:text-5xl font-extrabold text-black mb-4">
         Welcome to Pawradise 🐾
@@ -29,7 +29,7 @@ const About = ()=>{
       </Link>
     </div>
 
-    {/* Image content */}
+  
     <div className="flex justify-center">
       <img
         src= {image}
