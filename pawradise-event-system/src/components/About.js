@@ -53,7 +53,7 @@ const About = ()=>{
       />
     </div>
 
-    {/* Text Content */}
+
     <div>
       <h2 className="text-4xl md:text-7xl font-bold text-black mb-6 text-center md:text-left">Our Story 🐶❤️</h2>
       <p className="text-lg md:text-xl text-black leading-relaxed mb-6">
