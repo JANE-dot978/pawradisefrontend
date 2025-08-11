@@ -86,14 +86,14 @@ const About = ()=>{
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-      {/* Card 1 */}
+      
       <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
         <div className="text-5xl mb-4">🐕</div>
         <h3 className="text-3xl font-semibold mb-2 text-black">Dog Meetups</h3>
         <p className="text-black text-2xl">Fun social gatherings where dogs (and their humans!) meet, play, and make new furry friends.</p>
       </div>
 
-      {/* Card 2 */}
+      
       <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
         <div className="text-5xl mb-4">🎓</div>
         <h3 className="text-3xl font-semibold mb-2 text-black">Training Sessions</h3>
