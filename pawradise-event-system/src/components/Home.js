@@ -57,6 +57,52 @@ const Home = () => {
           </button>
         </div>
       </div>
+      <section className="bg-pink-50 py-16 px-6">
+      <div className="max-w-5xl mx-auto text-center">
+        <h2 className="text-6xl font-bold mb-8 text-black">How It Works 🐾</h2>
+        <p className="text-black mb-12 text-3xl">
+          Booking your dog's next fun event is simple! Just follow these easy steps:
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Step 1 */}
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <div className="text-3xl mb-4">1️⃣</div>
+            <h3 className="font-semibold text-2xl mb-2">Sign Up / Log In</h3>
+            <p className="text-gray-600 text-2xl">
+              Create an account or log in to your Pawradise profile to start booking events.
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <div className="text-3xl mb-4">2️⃣</div>
+            <h3 className="font-semibold text-2xl mb-2">Browse Events</h3>
+            <p className="text-gray-600 text-2xl">
+              Explore upcoming dog events like shows, playdates, and training sessions.
+            </p>
+          </div>
+
+          {/* Step 3 */}
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <div className="text-3xl mb-4">3️⃣</div>
+            <h3 className="font-semibold text-2xl mb-2">Book & Pay</h3>
+            <p className="text-gray-600 text-2xl">
+              Select your favorite event and pay securely via Mpesa  quick and easy!
+            </p>
+          </div>
+
+          {/* Step 4 */}
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+            <div className="text-3xl mb-4">4️⃣</div>
+            <h3 className="font-semibold text-2xl mb-2">Enjoy & Connect</h3>
+            <p className="text-gray-600 text-2xl">
+              Attend the event, have fun, and meet other dog lovers in the community.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
       {/* ABOUT Section: Visible below the video */}
 <div className="bg-pink-50 text-gray-800 py-12 px-6 md:px-20 flex flex-col md:flex-row items-center md:items-start md:gap-4 mx-auto">
