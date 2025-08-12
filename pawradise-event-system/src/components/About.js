@@ -236,7 +236,7 @@ const About = ()=>{
     </blockquote>
   </div>
 </section>
-<section className="relative py-20 px-6 bg-white">
+<section className="relative py-20 px-6 bg-pink-50">
   <div className="relative z-10 max-w-7xl mx-auto text-center mb-12">
     <h2 className="text-5xl font-bold text-black">🐾 Behind the Scenes at Pawradise</h2>
     <p className="text-gray-600 mt-4 text-3xl">
@@ -286,7 +286,7 @@ const About = ()=>{
   </div>
 </section>
 
-<section className="py-16 bg-gray-50">
+<section className="py-16 bg-pink-50">
   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 className="text-5xl font-bold text-center mb-12">What Our Clients Say 🐾</h2>
 
@@ -347,6 +347,35 @@ const About = ()=>{
     </div>
   </div>
 </section>
+
+
+<section className="py-12 bg-pink-50 text-center">
+  <h2 className="text-5xl font-bold text-black mb-4">Join Our Pawradise Community 🐾</h2>
+  <p className="text-gray-600 max-w-2xl mx-auto mb-6 text-2xl">
+    Be part of a vibrant community of dog lovers! Get the latest updates on upcoming events, 
+    special offers, and heartwarming paw stories delivered right to your inbox.
+  </p>
+  <form className="flex flex-col sm:flex-row justify-center gap-4 max-w-lg mx-auto">
+    <input
+      type="email"
+      placeholder="Enter your email"
+      className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 w-full sm:w-auto"
+    />
+    <button
+      type="submit"
+      className="bg-pink-600 hover:bg-pink-800 text-white px-6 py-2 rounded-lg font-semibold"
+    >
+      Subscribe
+    </button>
+  </form>
+  <p className="mt-6 text-gray-500 text-2xl">Follow us on social media for daily doggy fun 🐶:</p>
+  <div className="flex justify-center gap-6 mt-4">
+    <a href="#" className="text-blue-500 hover:text-blue-700 text-2xl">📘</a>
+    <a href="#" className="text-pink-500 hover:text-pink-700 text-2xl">📸</a>
+    <a href="#" className="text-sky-400 hover:text-sky-600 text-2xl">🐦</a>
+  </div>
+</section>
+
 
 
 
