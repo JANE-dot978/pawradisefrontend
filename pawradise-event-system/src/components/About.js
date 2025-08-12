@@ -286,6 +286,68 @@ const About = ()=>{
   </div>
 </section>
 
+<section className="py-16 bg-gray-50">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-5xl font-bold text-center mb-12">What Our Clients Say 🐾</h2>
+
+    <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
+      {/* Testimonial 1 */}
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <p className="text-gray-700 mb-4 text-2xl">
+          "Pawradise made our furry friend's birthday unforgettable! The team went above and beyond to make it special."
+        </p>
+        <div className="flex items-center">
+          <img
+            className="w-12 h-12 rounded-full mr-4"
+            src="https://randomuser.me/api/portraits/women/44.jpg"
+            alt="Client"
+          />
+          <div>
+            <p className="font-semibold">Sarah M.</p>
+            <p className="text-sm text-gray-500">Dog Mom</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonial 2 */}
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <p className="text-gray-700 mb-4 text-2xl">
+          "From decorations to treats, everything was perfect! Highly recommend Pawradise for pet events."
+        </p>
+        <div className="flex items-center">
+          <img
+            className="w-12 h-12 rounded-full mr-4"
+            src="https://randomuser.me/api/portraits/men/46.jpg"
+            alt="Client"
+          />
+          <div>
+            <p className="font-semibold">James K.</p>
+            <p className="text-sm text-gray-500">Proud Husky Owner</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonial 3 */}
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <p className="text-gray-700 mb-4 text-2xl">
+          "The staff truly loves animals and it shows in every detail. My cat had the best time!"
+        </p>
+        <div className="flex items-center">
+          <img
+            className="w-12 h-12 rounded-full mr-4"
+            src="https://randomuser.me/api/portraits/women/65.jpg"
+            alt="Client"
+          />
+          <div>
+            <p className="font-semibold">Lydia P.</p>
+            <p className="text-sm text-gray-500">paw Enthusiast</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 
