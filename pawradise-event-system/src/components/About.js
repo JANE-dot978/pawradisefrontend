@@ -5,6 +5,12 @@ import image2 from "../components/dogwalks.webp";
 import image3 from "../components/founder.jpg";
 import image4 from "../components/eventc.jpg";
 import image5 from "../components/eventc2.jpg";
+import image6 from "../components/dogtoys.jpg";
+import image7 from "../components/dogsplaying.jpg";
+import image8 from "../components/doggrooming.png";
+import image9 from "../components/behind.jpg";
+import image10 from "../components/dogsetup.jpg";
+import image11 from "../components/dogoos.webp";
 
 
 const About = ()=>{
@@ -241,32 +247,32 @@ const About = ()=>{
   {/* Gallery grid */}
   <div className="relative z-10 grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
     <img
-      src="/images/gallery1.jpg"
+      src={image11}
       alt="Behind the scenes 1"
       className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
     />
     <img
-      src="/images/gallery2.jpg"
+      src={image6}
       alt="Behind the scenes 2"
       className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
     />
     <img
-      src="/images/gallery3.jpg"
+      src={image7}
       alt="Behind the scenes 3"
       className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
     />
     <img
-      src="/images/gallery4.jpg"
+      src={image8}
       alt="Behind the scenes 4"
       className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
     />
     <img
-      src="/images/gallery5.jpg"
+      src={image9}
       alt="Behind the scenes 5"
       className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
     />
     <img
-      src="/images/gallery6.jpg"
+      src={image10}
       alt="Behind the scenes 6"
       className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
     />
