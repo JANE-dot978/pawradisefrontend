@@ -111,7 +111,7 @@ const Home = () => {
     alt="You holding a dog at an event"
     className="w-64 md:w-[700px] rounded-lg shadow-lg object-cover"
   />
-  <div className="md:ml-6 mt-6 md:mt-0 max-w-xl">
+  <div className="md:ml-6 mt-6 md:mt-0 max-w-xl bg-pink-50">
     <h2 className="text-6xl font-extrabold mb-6">About Me</h2>
    <p className="text-2xl leading-relaxed">
       Hi! I'm the founder of <strong>Pawradise Event System</strong>, and a passionate dog lover who's always believed that dogs deserve just as much joy, connection, and community as we do. My journey started at a local dog show, where I saw the excitement and happiness dogs experienced when socializing and showing off their unique personalities.

@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import image from "../components/many dogs.jpg"
 import image2 from "../components/dogwalks.webp";
 import image3 from "../components/founder.jpg";
@@ -370,10 +371,16 @@ const About = ()=>{
   </form>
   <p className="mt-6 text-gray-500 text-2xl">Follow us on social media for daily doggy fun 🐶:</p>
   <div className="flex justify-center gap-6 mt-4">
-    <a href="#" className="text-blue-500 hover:text-blue-700 text-2xl">📘</a>
-    <a href="#" className="text-pink-500 hover:text-pink-700 text-2xl">📸</a>
-    <a href="#" className="text-sky-400 hover:text-sky-600 text-2xl">🐦</a>
-  </div>
+    <a href="https://facebook.com" className="text-blue-500 hover:text-blue-700 text-2xl">
+        <FaFacebook />
+    </a>
+    <a href="https://instagram.com" className="text-pink-500 hover:text-pink-700 text-2xl">
+        <FaInstagram />
+    </a>
+    <a href="https://twitter.com" className="text-sky-400 hover:text-sky-600 text-2xl">
+        <FaTwitter />
+    </a>
+</div>
 </section>
 
 
