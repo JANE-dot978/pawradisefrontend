@@ -54,7 +54,7 @@ const Navbar = () => {
           <Link
             to="/"
             className={`font-bold text-2xl transition-colors duration-300 ${
-              isScrolled ? 'text-gray-700 hover:text-blue-800' : 'text-white hover:text-yellow-300'
+              isScrolled ? 'text-gray-700 hover:text-pink-800' : 'text-white hover:text-yellow-300'
             }`}
           >
             Home
