@@ -61,7 +61,7 @@ const Contact = () => {
 
         {/* Form + Contact Info */}
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Form */}
+  
           <form
             onSubmit={handleSubmit}
             className="bg-white shadow-md rounded-lg p-6 space-y-4"
@@ -141,7 +141,7 @@ const Contact = () => {
             )}
           </form>
 
-          {/* Contact Info */}
+    
           <div className="flex flex-col justify-center space-y-4 text-black text-xl">
             <p className="text-2xl">📍 Nairobi, Kenya</p>
             <p className="text-2xl">📧 contact@pawradise.com</p>
