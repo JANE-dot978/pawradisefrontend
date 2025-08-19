@@ -43,7 +43,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-16 bg-pink-50">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Logo + Heading */}
+        
         <div className="flex flex-col items-center mb-8 pt-24">
           <img
             src={image}
@@ -59,7 +59,7 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Form + Contact Info */}
+      
         <div className="grid md:grid-cols-2 gap-8">
   
           <form
