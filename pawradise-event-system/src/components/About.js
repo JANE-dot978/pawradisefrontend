@@ -107,14 +107,12 @@ const About = ()=>{
         <p className="text-black text-2xl">Group classes designed to build trust, improve behavior, and strengthen your bond.</p>
       </div>
 
-      {/* Card 3 */}
       <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
         <div className="text-5xl mb-4">🎉</div>
         <h3 className="text-3xl font-semibold mb-2 text-black">Themed Events</h3>
         <p className="text-black text-2xl">From doggy birthdays to costume parades, we celebrate every moment with style and joy.</p>
       </div>
 
-      {/* Card 4 */}
       <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
         <div className="text-5xl mb-4">🏞️</div>
         <h3 className="text-3xl font-semibold mb-2 text-black">Outdoor Adventures</h3>
