@@ -83,14 +83,14 @@ const Navbar = () => {
           >
             Contact Us
           </Link>
-          <Link
+          {/* <Link
             to="/AdminDashboard"
             className={`font-bold text-2xl transition-colors duration-300 ${
               isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-yellow-300'
             }`}
           >
             AdminDashboard
-          </Link>
+          </Link> */}
 
           <Link
             to="/signup"
@@ -119,7 +119,7 @@ const Navbar = () => {
           <Link to="/about" className="text-gray-700 font-semibold text-lg">About</Link>
           <Link to="/events" className="text-gray-700 font-semibold text-lg">Events</Link>
           <Link to="/contact" className="text-gray-700 font-semibold text-lg">Contact Us</Link>
-           <Link to="/AdminDashboard" className="text-gray-700 font-semibold text-lg">Dashboard</Link>
+           {/* <Link to="/AdminDashboard" className="text-gray-700 font-semibold text-lg">Dashboard</Link> */}
            <link to="/signup" className="text-gray-700 font-semibold text-lg">signup</link>
            <link to="/Login" className="text-gray-700 font-semibold text-lg">login</link>
           <Link to="/AdminDashboard">AdminDashboard</Link> {/* add this */}
