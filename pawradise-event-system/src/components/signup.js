@@ -95,146 +95,96 @@
 // }
 
 // export default Signup;
-  import React, { useState } from "react";
-import axios from "axios";
+//   import React from "react";
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
-  const navigate = useNavigate();
-
+const Signup = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     role: "user",
   });
+  const navigate = useNavigate();
 
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  // ✅ Handle input changes
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // ✅ Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-
     try {
-      await axios.post("http://localhost:4000/api/auth/register", formData);
-
-      // ✅ Redirect after success
-      navigate("/login");
+      const res = await fetch("http://localhost:4000/api/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      alert(data.message || "Signup successful! Please login.");
+      onClose();
+      navigate("/login"); // 🔹 go to login after signup
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong");
-    } finally {
-      setLoading(false);
+      console.error(err);
+      alert("Signup error!");
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Create Account</h2>
-
-      {error && <p style={styles.error}>{error}</p>}
-
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-
-        <select
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-          style={styles.input}
+    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+        <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            className="w-full border px-3 py-2 rounded"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="w-full border px-3 py-2 rounded"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="w-full border px-3 py-2 rounded"
+            onChange={handleChange}
+            required
+          />
+          <select
+            name="role"
+            className="w-full border px-3 py-2 rounded"
+            onChange={handleChange}
+          >
+            <option value="user">User</option>
+            <option value="employee">Employee</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          >
+            Sign Up
+          </button>
+        </form>
+        <button
+          onClick={onClose}
+          className="mt-4 text-gray-500 hover:text-gray-700"
         >
-          <option value="user">User</option>
-          <option value="employee">Employee</option>
-          <option value="admin">Admin</option>
-        </select>
-
-        <button type="submit" style={styles.button} disabled={loading}>
-          {loading ? "Signing Up..." : "Sign Up"}
+          Cancel
         </button>
-      </form>
+      </div>
     </div>
   );
 };
 
-// ✅ Inline styles for quick design
-const styles = {
-  container: {
-    width: "350px",
-    margin: "50px auto",
-    padding: "20px",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    backgroundColor: "#f9f9f9",
-    boxShadow: "0px 2px 6px rgba(0,0,0,0.1)",
-  },
-  title: {
-    textAlign: "center",
-    marginBottom: "20px",
-    color: "#333",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  input: {
-    marginBottom: "15px",
-    padding: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    fontSize: "14px",
-  },
-  button: {
-    padding: "10px",
-    backgroundColor: "#007BFF",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    fontSize: "16px",
-    cursor: "pointer",
-  },
-  error: {
-    color: "red",
-    marginBottom: "10px",
-    textAlign: "center",
-  },
-};
-
-export default Register;
+export default Signup;
