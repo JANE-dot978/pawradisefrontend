@@ -1,4 +1,4 @@
-// components/AdminDashboard.js
+
 import React, { useState, useEffect } from "react";
 
 const AdminDashboard = () => {
