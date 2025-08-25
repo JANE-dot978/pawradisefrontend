@@ -6,6 +6,7 @@ import About from './components/About';
 import Events from './components/Events';
 import Contact from './components/Contact';
 import AdminDashboard from './components/AdminDashboard';
+import EmployeeDashboard from './components/EmployeeDashboard';
 import Signup from './components/signup';
 import Login from './components/Login';
 
