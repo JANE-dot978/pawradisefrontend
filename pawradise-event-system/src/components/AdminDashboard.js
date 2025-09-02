@@ -1,154 +1,105 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const AdminDashboard = () => {
-  const [events, setEvents] = useState([]);
-  const [form, setForm] = useState({
+export default function AdminDashboard() {
+  const [event, setEvent] = useState({
     title: "",
-    date: "",
     description: "",
+    date: "",
+    location: "",
     price: "",
   });
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
 
-  const fetchEvents = async () => {
-    try {
-      const res = await fetch("http://localhost:4000/api/events");
-      const data = await res.json();
-      setEvents(data);
-    } catch (error) {
-      console.error("Error fetching events:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setEvent({ ...event, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setMessage(null);
-
     try {
-      const res = await fetch("http://localhost:4000/api/events", {
+      const response = await fetch("http://localhost:4000/api/events", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(event),
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        setMessage({ type: "success", text: "Event created!" });
-        setForm({ title: "", date: "", description: "", price: "" });
-        fetchEvents();
+      if (response.ok) {
+        setMessage("Event created successfully!");
+        setEvent({ title: "", description: "", date: "", location: "", price: "" });
       } else {
-        setMessage({ type: "error", text: data.error || "Error creating event" });
+        setMessage("Failed to create event.");
       }
     } catch (err) {
-      setMessage({ type: "error", text: "Network error" });
-    } finally {
-      setLoading(false);
+      console.error(err);
+      setMessage("Server error. Try again.");
     }
   };
 
   return (
-    <div className="p-6 space-y-8">
-      <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+    <div className="p-8 max-w-lg mx-auto">
+      <h2 className="text-2xl font-bold mb-6">Admin Dashboard - Create Event</h2>
 
-      {/* Create Event */}
-      <section className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">Create Event</h2>
+      <form onSubmit={handleSubmit} className="space-y-4 bg-white shadow-lg rounded-lg p-6">
+        <input
+          type="text"
+          name="title"
+          placeholder="Event Title"
+          value={event.title}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
 
-        {message && (
-          <p className={message.type === "success" ? "text-green-600" : "text-red-600"}>
-            {message.text}
-          </p>
-        )}
+        <textarea
+          name="description"
+          placeholder="Event Description"
+          value={event.description}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
 
-        <form className="space-y-3" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            placeholder="Event Title"
-            className="border p-2 w-full rounded-lg"
-            required
-          />
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            className="border p-2 w-full rounded-lg"
-            required
-          />
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Event Description"
-            rows="4"
-            className="border p-2 w-full rounded-lg"
-            required
-          />
-          <input
-            type="number"
-            name="price"
-            value={form.price}
-            onChange={handleChange}
-            placeholder="Event Price (KES)"
-            className="border p-2 w-full rounded-lg"
-            required
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-          >
-            {loading ? "Creating..." : "Create Event"}
-          </button>
-        </form>
-      </section>
+        <input
+          type="date"
+          name="date"
+          value={event.date}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
 
-      {/* Event List */}
-      <section className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">Existing Events</h2>
-        {events.length === 0 ? (
-          <p>No events yet</p>
-        ) : (
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr>
-                <th className="border p-2">Title</th>
-                <th className="border p-2">Date</th>
-                <th className="border p-2">Description</th>
-                <th className="border p-2">Price (KES)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {events.map((event) => (
-                <tr key={event._id}>
-                  <td className="border p-2">{event.title}</td>
-                  <td className="border p-2">{new Date(event.date).toLocaleDateString()}</td>
-                  <td className="border p-2">{event.description}</td>
-                  <td className="border p-2">{event.price}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </section>
+        <input
+          type="text"
+          name="location"
+          placeholder="Location"
+          value={event.location}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
+
+        <input
+          type="number"
+          name="price"
+          placeholder="Price (KES)"
+          value={event.price}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
+
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded w-full">
+          Add Event
+        </button>
+      </form>
+
+      {message && <p className="mt-4 text-center text-green-600">{message}</p>}
     </div>
   );
-};
-
-export default AdminDashboard;
+}

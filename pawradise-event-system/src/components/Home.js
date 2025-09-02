@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import video from "../components/dog show.mp4";
+import video from "../components/dogshow.mp4";
 import myImage from "../components/ceo.jpg"; 
 import Image from "../components/mandog.jpg";
 import Image1 from "../components/mandogsss.webp";

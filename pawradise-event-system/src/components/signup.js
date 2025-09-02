@@ -95,7 +95,7 @@
 // }
 
 // export default Signup;
-//   import React from "react";
+  // import React from "react";
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -116,7 +116,7 @@ const Signup = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:4000/api/users/register", {
+      const res = await fetch("http://localhost:4000/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -188,3 +188,129 @@ const Signup = ({ onClose }) => {
 };
 
 export default Signup;
+
+// import React, { useState } from 'react';
+// import React, { useState } from "react";
+
+// import { useNavigate } from 'react-router-dom';
+
+// const Signup = () => {
+//   const [name, setName] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [role, setRole] = useState('user'); // default role
+//   const [error, setError] = useState('');
+//   const [success, setSuccess] = useState('');
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setError('');
+//     setSuccess('');
+
+//     try {
+//       const res = await fetch('http://localhost:4000/api/auth/register', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ name, email, password, role }),
+//       });
+
+//       const data = await res.json().catch(() => ({}));
+//       if (!res.ok) {
+//         throw new Error(data?.message || `Registration failed (${res.status})`);
+//       }
+
+//       setSuccess('Account created successfully — redirecting to login...');
+//       setTimeout(() => navigate('/login'), 1500);
+//     } catch (err) {
+//       console.error('Signup error:', err);
+//       setError(err.message || 'Registration error');
+//     }
+//   };
+
+//   return (
+//     <section className="bg-gray-100 min-h-screen flex items-center justify-center">
+//       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+//         <h2 className="text-2xl font-bold mb-6 text-center">Create an Account</h2>
+
+//         {error && <div className="text-red-600 mb-4 text-center">{error}</div>}
+//         {success && <div className="text-green-600 mb-4 text-center">{success}</div>}
+
+//         <form onSubmit={handleSubmit}>
+//           {/* Name */}
+//           <div className="mb-4">
+//             <label className="block mb-1">Full Name</label>
+//             <input
+//               type="text"
+//               value={name}
+//               required
+//               onChange={(e) => setName(e.target.value)}
+//               placeholder="Your full name"
+//               className="w-full px-4 py-2 border border-blue-600 rounded-md focus:ring-2 focus:ring-blue-600"
+//             />
+//           </div>
+
+//           {/* Email */}
+//           <div className="mb-4">
+//             <label className="block mb-1">Email</label>
+//             <input
+//               type="email"
+//               value={email}
+//               required
+//               onChange={(e) => setEmail(e.target.value)}
+//               placeholder="Your email"
+//               className="w-full px-4 py-2 border border-blue-600 rounded-md focus:ring-2 focus:ring-blue-600"
+//             />
+//           </div>
+
+//           {/* Password */}
+//           <div className="mb-4">
+//             <label className="block mb-1">Password</label>
+//             <input
+//               type="password"
+//               value={password}
+//               required
+//               onChange={(e) => setPassword(e.target.value)}
+//               placeholder="Your password"
+//               className="w-full px-4 py-2 border border-blue-600 rounded-md focus:ring-2 focus:ring-blue-600"
+//             />
+//           </div>
+
+//           {/* Role */}
+//           <div className="mb-6">
+//             <label className="block mb-1">Role</label>
+//             <select
+//               value={role}
+//               onChange={(e) => setRole(e.target.value)}
+//               className="w-full px-4 py-2 border border-blue-600 rounded-md focus:ring-2 focus:ring-blue-600"
+//             >
+//               <option value="user">User</option>
+//               <option value="employee">Employee</option>
+//               <option value="admin">Admin</option>
+//             </select>
+//           </div>
+
+//           <button
+//             type="submit"
+//             className="bg-blue-600 text-white px-4 py-2 rounded-md text-lg font-medium hover:bg-blue-700 w-full"
+//           >
+//             Sign Up
+//           </button>
+//         </form>
+
+//         <p className="mt-4 text-center">
+//           Already have an account?{" "}
+//           <button
+//             type="button"
+//             onClick={() => navigate('/login')}
+//             className="text-blue-600 underline"
+//           >
+//             Go to Login
+//           </button>
+//         </p>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default Signup;
