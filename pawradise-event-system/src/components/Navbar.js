@@ -131,16 +131,116 @@
 // export default Navbar;
 
 
+// import { useState, useEffect } from "react";
+// import { Link } from "react-router-dom";
+// import logo from "../components/logo.jpg";
+// import Login from "../components/Login.js";
+// import Signup from "./Signup.js"; // ✅ Capitalized
+
+// const Navbar = () => {
+//   const [isLoginOpen, setIsLoginOpen] = useState(false);
+//   const [isSignupOpen, setIsSignupOpen] = useState(false);
+//   const [user, setUser] = useState(null);
+
+//   useEffect(() => {
+//     const stored = localStorage.getItem("user");
+//     if (stored) setUser(JSON.parse(stored));
+//   }, []);
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("user");
+//     setUser(null);
+//   };
+
+//   return (
+//     <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 bg-black shadow-md">
+//       <div className="flex justify-between items-center">
+//         {/* Logo */}
+//         <div className="flex items-center space-x-3">
+//           <img
+//             src={logo}
+//             alt="company logo"
+//             className="h-16 w-32 object-contain"
+//           />
+//           <div className="text-xl md:text-3xl font-bold text-white">
+//             PawradiseEventSystem
+//           </div>
+//         </div>
+
+//         {/* Desktop Links */}
+//         <div className="hidden md:flex space-x-10 items-center">
+//           <Link to="/" className="font-bold text-2xl text-white">
+//             Home
+//           </Link>
+//           <Link to="/about" className="font-bold text-2xl text-white">
+//             About
+//           </Link>
+//           <Link to="/events" className="font-bold text-2xl text-white">
+//             Events
+//           </Link>
+//           <Link to="/contact" className="font-bold text-2xl text-white">
+//             Contact Us
+//           </Link>
+
+//           {!user ? (
+//             <>
+//               <button
+//                 onClick={() => setIsSignupOpen(true)}
+//                 className="text-white font-bold"
+//               >
+//                 Sign Up
+//               </button>
+//               <button
+//                 onClick={() => setIsLoginOpen(true)}
+//                 className="text-white font-bold"
+//               >
+//                 Login
+//               </button>
+//             </>
+//           ) : (
+//             <div className="relative">
+//               <button className="text-white font-bold">
+//                 {user.user?.name} ⬇
+//               </button>
+//               <div className="absolute right-0 bg-white mt-2 rounded shadow-lg p-4">
+//                 <p>{user.user?.email}</p>
+//                 <p className="text-sm text-gray-500">Role: {user.user?.role}</p>
+//                 <button
+//                   onClick={handleLogout}
+//                   className="text-red-500 mt-2"
+//                 >
+//                   Logout
+//                 </button>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+
+//       {/* Modals */}
+//       {isLoginOpen && (
+//         <Login onClose={() => setIsLoginOpen(false)} setUser={setUser} />
+//       )}
+//       {isSignupOpen && (
+//         <Signup onClose={() => setIsSignupOpen(false)} />
+//       )}
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../components/logo.jpg";
 import Login from "../components/Login.js";
-import Signup from "../components/signup.js"; // ✅ Capitalized
+import Signup from "./Signup.js";
 
 const Navbar = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger state
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
@@ -149,7 +249,29 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
     setUser(null);
+    setIsMenuOpen(false);
+    navigate("/");
+  };
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    setIsLoginOpen(false);
+    
+    // Redirect based on role
+    if (userData.role === "admin") {
+      navigate("/admin");
+    } else if (userData.role === "employee") {
+      navigate("/employee");
+    } else {
+      navigate("/events");
+    }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -167,18 +289,18 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-10 items-center">
-          <Link to="/" className="font-bold text-2xl text-white">
+          <Link to="/" className="font-bold text-2xl text-white hover:text-pink-400 transition">
             Home
           </Link>
-          <Link to="/about" className="font-bold text-2xl text-white">
+          <Link to="/about" className="font-bold text-2xl text-white hover:text-pink-400 transition">
             About
           </Link>
-          <Link to="/events" className="font-bold text-2xl text-white">
+          <Link to="/events" className="font-bold text-2xl text-white hover:text-pink-400 transition">
             Events
           </Link>
-          <Link to="/contact" className="font-bold text-2xl text-white">
+          <Link to="/contact" className="font-bold text-2xl text-white hover:text-pink-400 transition">
             Contact Us
           </Link>
 
@@ -186,28 +308,28 @@ const Navbar = () => {
             <>
               <button
                 onClick={() => setIsSignupOpen(true)}
-                className="text-white font-bold"
+                className="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded transition"
               >
                 Sign Up
               </button>
               <button
                 onClick={() => setIsLoginOpen(true)}
-                className="text-white font-bold"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition"
               >
                 Login
               </button>
             </>
           ) : (
             <div className="relative">
-              <button className="text-white font-bold">
-                {user.user?.name} ⬇
+              <button className="text-white font-bold hover:text-pink-400 transition">
+                {user.name} ⬇
               </button>
-              <div className="absolute right-0 bg-white mt-2 rounded shadow-lg p-4">
-                <p>{user.user?.email}</p>
-                <p className="text-sm text-gray-500">Role: {user.user?.role}</p>
+              <div className="absolute right-0 bg-white mt-2 rounded shadow-lg p-4 min-w-48">
+                <p className="text-gray-800 font-medium">Welcome, {user.name}</p>
+                <p className="text-sm text-gray-500">Role: {user.role}</p>
                 <button
                   onClick={handleLogout}
-                  className="text-red-500 mt-2"
+                  className="text-red-500 mt-2 hover:text-red-700"
                 >
                   Logout
                 </button>
@@ -215,11 +337,118 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
+        {/* Mobile Hamburger Menu Button */}
+        <div className="md:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none"
+          >
+            <svg
+              className="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden mt-4 bg-black rounded-lg p-4">
+          <Link 
+            to="/" 
+            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link 
+            to="/events" 
+            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Events
+          </Link>
+          <Link 
+            to="/contact" 
+            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Contact Us
+          </Link>
+
+          {!user ? (
+            <div className="mt-4 space-y-3">
+              <button
+                onClick={() => {
+                  setIsSignupOpen(true);
+                  setIsMenuOpen(false);
+                }}
+                className="block w-full text-left py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+              >
+                Sign Up
+              </button>
+              <button
+                onClick={() => {
+                  setIsLoginOpen(true);
+                  setIsMenuOpen(false);
+                }}
+                className="block w-full text-left py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+              >
+                Login
+              </button>
+            </div>
+          ) : (
+            <div className="mt-4">
+              <div className="py-3 text-white">
+                <p className="font-bold">Welcome, {user.name}</p>
+                <p className="text-sm text-gray-400">Role: {user.role}</p>
+              </div>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsMenuOpen(false);
+                }}
+                className="block w-full text-left py-3 text-red-500 font-bold text-xl hover:text-red-400 transition"
+              >
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Modals */}
       {isLoginOpen && (
-        <Login onClose={() => setIsLoginOpen(false)} setUser={setUser} />
+        <Login 
+          onClose={() => setIsLoginOpen(false)} 
+          onLoginSuccess={handleLoginSuccess} 
+        />
       )}
       {isSignupOpen && (
         <Signup onClose={() => setIsSignupOpen(false)} />

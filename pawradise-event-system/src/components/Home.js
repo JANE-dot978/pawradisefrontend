@@ -21,6 +21,10 @@ import Imagel from "../components/gallery13.jpg";
 import Imagem from "../components/gallery12.jpg";
 import Imagen from"../components/gallery14.jpg";
 import Imageo from"../components/gallery15.jpg";
+import pic1 from "../components/pic1.webp";
+import pic2 from "../components/pic2.jpg";
+import pic3 from "../components/pic3.jpg";
+import pic4 from "../components/pic4.jpeg";
 
 
 
@@ -103,6 +107,109 @@ const Home = () => {
         </div>
       </div>
     </section>
+    <section className="py-12 bg-pink-50">
+  <div className="max-w-7xl mx-auto px-6">
+    {/* Section Title */}
+    <h2 className="text-5xl font-bold text-center mb-10 text-black">
+      Upcoming Events
+    </h2>
+
+    {/* Event Cards Grid */}
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      
+      {/* Event Card 1 */}
+      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
+        <img
+          src={pic4}
+          alt="Dog Training Workshop"
+          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
+        />
+        <div className="p-5">
+          <h3 className="text-xl font-semibold text-gray-800">Dog Training Workshop</h3>
+          <p className="text-gray-600 mt-2">Learn tips and tricks from top trainers.</p>
+          <p className="text-gray-900 font-bold mt-3">Ksh 1,500</p>
+          <a
+            href="/signup"
+            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800"
+          >
+            Book & Pay
+          </a>
+        </div>
+      </div>
+
+      {/* Event Card 2 */}
+      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
+        <img
+          src={pic3}
+          alt="Pet Festival"
+          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
+        />
+        <div className="p-5">
+          <h3 className="text-xl font-semibold text-gray-800">Pet Festival</h3>
+          <p className="text-gray-600 mt-2">A fun day out for pets and owners.</p>
+          <p className="text-gray-900 font-bold mt-3">Ksh 2,000</p>
+          <a
+            href="/signup"
+            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700"
+          >
+            Book & Pay
+          </a>
+        </div>
+      </div>
+
+      {/* Event Card 3 */}
+      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
+        <img
+          src={pic2}
+          alt="Dog Agility Competition"
+          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
+        />
+        <div className="p-5">
+          <h3 className="text-xl font-semibold text-gray-800">Dog Agility Competition</h3>
+          <p className="text-gray-600 mt-2">Watch dogs show off their skills!</p>
+          <p className="text-gray-900 font-bold mt-3">Ksh 2,500</p>
+          <a
+            href="/signup"
+            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700"
+          >
+            Book & Pay
+          </a>
+        </div>
+      </div>
+
+      {/* Event Card 4 */}
+      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
+        <img
+          src={pic1}
+          alt="Charity Dog Walk"
+          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
+        />
+        <div className="p-5">
+          <h3 className="text-xl font-semibold text-gray-800">Charity Dog Walk</h3>
+          <p className="text-gray-600 mt-2">Walk with your furry friends for a cause.</p>
+          <p className="text-gray-900 font-bold mt-3">Ksh 1,000</p>
+          <a
+            href="/signup"
+            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700"
+          >
+            Book & Pay
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* View All Events Button */}
+    <div className="mt-12 text-center">
+      <a
+        href="/events"
+        className="inline-block bg-pink-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-pink-900"
+      >
+        View All Events
+      </a>
+    </div>
+  </div>
+</section>
+
 
       {/* ABOUT Section: Visible below the video */}
 <div className="bg-pink-50 text-gray-800 py-12 px-6 md:px-20 flex flex-col md:flex-row items-center md:items-start md:gap-4 mx-auto">

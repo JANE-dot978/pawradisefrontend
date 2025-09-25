@@ -356,89 +356,399 @@
 // export default LoginCard;
 
 
+// import React, { useState } from "react";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+
+// const LoginCard = ({ onLogin }) => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState("");
+//   const [showForm, setShowForm] = useState(true); // ✅ controls visibility
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const res = await axios.post("http://localhost:4000/api/auth/login", {
+//         email,
+//         password,
+//       });
+
+//       console.log("✅ Login response:", res.data);
+
+//       // Save token + role
+//       localStorage.setItem("token", res.data.token);
+//       localStorage.setItem("role", res.data.role);
+
+//       // Update authentication state
+//       if (onLogin) onLogin();
+
+//       // ✅ Hide form after successful login
+//       setShowForm(false);
+
+//       // Redirect based on role
+//       if (res.data.role === "admin") {
+//         navigate("/admin");
+//       } else if (res.data.role === "employee") {
+//         navigate("/employee");
+//       } else {
+//         navigate("/events");
+//       }
+//     } catch (err) {
+//       console.error("❌ Login error:", err);
+
+//       if (err.response?.data?.message) {
+//         setError(err.response.data.message);
+//       } else {
+//         setError("Something went wrong. Please try again.");
+//       }
+//     }
+//   };
+
+//   // ✅ Don't render if form is hidden
+//   if (!showForm) return null;
+
+//   return (
+//     <div className="absolute top-5 right-5 bg-white shadow-lg p-6 rounded-xl w-80">
+//       <h2 className="text-xl font-bold mb-4">Login</h2>
+//       {error && <p className="text-red-500 mb-2">{error}</p>}
+//       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           className="border p-2 rounded-md"
+//           required
+//         />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           className="border p-2 rounded-md"
+//           required
+//         />
+//         <button
+//           type="submit"
+//           className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700"
+//         >
+//           Login
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default LoginCard;
+
+// src/components/Login.js
+// import React, { useState } from "react";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+
+// const LoginCard = ({ onLogin }) => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState("");
+//   const [showForm, setShowForm] = useState(true);
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const res = await axios.post("http://localhost:4000/api/auth/login", {
+//         email,
+//         password,
+//       });
+
+//       // ✅ Extract user data properly from backend response
+//       const token = res.data.token;
+//       const role = res.data.user?.role || "user";
+//       const userId = res.data.user?.id || res.data.user?._id || null;
+//       const userEmail = res.data.user?.email || email;
+
+//       // Save token & role (legacy compatibility)
+//       localStorage.setItem("token", token);
+//       localStorage.setItem("role", role);
+
+//       // ✅ Save full user object consistently
+//       const userObj = {
+//         id: userId,
+//         email: userEmail,
+//         role,
+//         token,
+//       };
+//       localStorage.setItem("user", JSON.stringify(userObj));
+
+//       // Inform parent that login succeeded
+//       if (onLogin) onLogin();
+
+//       // Hide the form after login
+//       setShowForm(false);
+
+//       // ✅ Redirect based on role
+//       if (role === "admin") {
+//         navigate("/admin");
+//       } else if (role === "employee") {
+//         navigate("/employee");
+//       } else {
+//         navigate("/events");
+//       }
+//     } catch (err) {
+//       console.error("Login error:", err);
+//       if (err.response?.data?.message) {
+//         setError(err.response.data.message);
+//       } else {
+//         setError("Something went wrong. Please try again.");
+//       }
+//     }
+//   };
+
+//   if (!showForm) return null;
+
+//   return (
+//     <div className="absolute top-5 right-5 bg-white shadow-lg p-6 rounded-xl w-80">
+//       <h2 className="text-xl font-bold mb-4">Login</h2>
+//       {error && <p className="text-red-500 mb-2">{error}</p>}
+//       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           className="border p-2 rounded-md"
+//           required
+//         />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           className="border p-2 rounded-md"
+//           required
+//         />
+//         <button
+//           type="submit"
+//           className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700"
+//         >
+//           Login
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default LoginCard;
+
+// import React, { useState } from "react";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+
+// const Login = ({ onLogin }) => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState("");
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const res = await axios.post("http://localhost:4000/api/auth/login", {
+//         email,
+//         password,
+//       });
+
+//       const token = res.data.token;
+//       const role = res.data.user?.role || "user";
+//       const userId = res.data.user?.id || res.data.user?._id || null;
+//       const userEmail = res.data.user?.email || email;
+
+//       // Save to localStorage
+//       localStorage.setItem("token", token);
+//       localStorage.setItem("role", role);
+//       localStorage.setItem("user", JSON.stringify({
+//         id: userId,
+//         email: userEmail,
+//         role,
+//         token,
+//       }));
+
+//       // Inform parent that login succeeded
+//       if (onLogin) onLogin();
+
+//       // Redirect based on role
+//       if (role === "admin") {
+//         navigate("/admin");
+//       } else if (role === "employee") {
+//         navigate("/employee");
+//       } else {
+//         navigate("/events");
+//       }
+//     } catch (err) {
+//       console.error("Login error:", err);
+//       if (err.response?.data?.message) {
+//         setError(err.response.data.message);
+//       } else {
+//         setError("Something went wrong. Please try again.");
+//       }
+//     }
+//   };
+
+//   return (
+//     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+//       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+//         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+//         {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+//         <form onSubmit={handleSubmit} className="space-y-4">
+//           <input
+//             type="email"
+//             placeholder="Email"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             className="w-full p-3 border rounded-lg"
+//             required
+//           />
+//           <input
+//             type="password"
+//             placeholder="Password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             className="w-full p-3 border rounded-lg"
+//             required
+//           />
+//           <button
+//             type="submit"
+//             className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700"
+//           >
+//             Login
+//           </button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const LoginCard = ({ onLogin }) => {
+const Login = ({ onClose, onLoginSuccess }) => { // Changed prop name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [showForm, setShowForm] = useState(true); // ✅ controls visibility
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
+    
     try {
       const res = await axios.post("http://localhost:4000/api/auth/login", {
         email,
         password,
       });
 
-      console.log("✅ Login response:", res.data);
+      const token = res.data.token;
+      const role = res.data.user?.role || "user";
+      const userId = res.data.user?.id || res.data.user?._id || null;
+      const userEmail = res.data.user?.email || email;
+      const userName = res.data.user?.name || "User"; // CRUCIAL: Added name
 
-      // Save token + role
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("role", res.data.role);
+      // Save to localStorage - INCLUDING NAME
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+      localStorage.setItem("user", JSON.stringify({
+        id: userId,
+        email: userEmail,
+        name: userName, // This is what the navbar needs
+        role,
+        token,
+      }));
 
-      // Update authentication state
-      if (onLogin) onLogin();
-
-      // ✅ Hide form after successful login
-      setShowForm(false);
+      // Inform parent that login succeeded with user data
+      if (onLoginSuccess) {
+        onLoginSuccess({
+          id: userId,
+          email: userEmail,
+          name: userName,
+          role,
+          token
+        });
+      }
 
       // Redirect based on role
-      if (res.data.role === "admin") {
+      if (role === "admin") {
         navigate("/admin");
-      } else if (res.data.role === "employee") {
+      } else if (role === "employee") {
         navigate("/employee");
       } else {
         navigate("/events");
       }
     } catch (err) {
-      console.error("❌ Login error:", err);
-
+      console.error("Login error:", err);
       if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else {
         setError("Something went wrong. Please try again.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
-  // ✅ Don't render if form is hidden
-  if (!showForm) return null;
-
   return (
-    <div className="absolute top-5 right-5 bg-white shadow-lg p-6 rounded-xl w-80">
-      <h2 className="text-xl font-bold mb-4">Login</h2>
-      {error && <p className="text-red-500 mb-2">{error}</p>}
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 rounded-md"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 rounded-md"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700"
-        >
-          Login
-        </button>
-      </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+        {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition duration-200"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+
+        {/* Demo hint */}
+        <p className="text-center text-gray-600 mt-4 text-sm">
+          For demo: Use your registered credentials
+        </p>
+
+        {/* Close button for modal */}
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+          >
+            ✕
+          </button>
+        )}
+      </div>
     </div>
   );
 };
 
-export default LoginCard;
+export default Login;

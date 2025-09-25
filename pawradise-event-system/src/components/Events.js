@@ -1,152 +1,9 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
 
-// const Events = () => {
-//   const [events, setEvents] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState("");
-//   const [selectedEvent, setSelectedEvent] = useState(null);
-//   const [bookingLoading, setBookingLoading] = useState(false);
-
-//   // Fetch events (with localStorage caching)
-//   useEffect(() => {
-//     const cachedEvents = localStorage.getItem("events");
-//     if (cachedEvents) {
-//       setEvents(JSON.parse(cachedEvents));
-//       setLoading(false);
-//     }
-
-//     const fetchEvents = async () => {
-//       try {
-//         const res = await axios.get("http://localhost:4000/api/events");
-//         setEvents(res.data);
-
-//         // Save to cache
-//         localStorage.setItem("events", JSON.stringify(res.data));
-//       } catch (err) {
-//         if (!cachedEvents) {
-//           setError("Failed to load events");
-//         }
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchEvents();
-//   }, []);
-
-//   // Handle booking
-//   const handleBooking = async () => {
-//     if (!selectedEvent) return;
-
-//     try {
-//       setBookingLoading(true);
-//       const token = localStorage.getItem("token");
-
-//       if (!token) {
-//         alert("⚠️ Please login first before booking.");
-//         return;
-//       }
-
-//       await axios.post(
-//         "http://localhost:4000/api/bookings",
-//         { eventId: selectedEvent._id },
-//         { headers: { Authorization: `Bearer ${token}` } }
-//       );
-
-//       alert("✅ Booking successful!");
-//       setSelectedEvent(null);
-//     } catch (err) {
-//       alert("❌ Booking failed. Please try again.");
-//     } finally {
-//       setBookingLoading(false);
-//     }
-//   };
-
-//   if (loading) {
-//     return <p className="text-center text-gray-500">Loading events...</p>;
-//   }
-
-//   if (error) {
-//     return <p className="text-center text-red-500">{error}</p>;
-//   }
-
-//   return (
-//     <div className="p-6">
-//       <h1 className="text-3xl font-bold mb-8 text-center">🎉 Upcoming Events</h1>
-
-//       {events.length === 0 ? (
-//         <p className="text-center text-gray-600">No events available</p>
-//       ) : (
-//         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {events.map((event) => (
-//             <div
-//               key={event._id}
-//               className="bg-white shadow-lg rounded-2xl p-5 hover:shadow-xl transition flex flex-col"
-//             >
-//               <img
-//                 src={event.imageUrl || "/default-event.jpg"}
-//                 alt={event.title}
-//                 className="w-full h-48 object-cover rounded-lg"
-//                 onError={(e) => (e.target.src = "/default-event.jpg")}
-//               />
-
-//               <h2 className="text-xl font-semibold mt-4">{event.title}</h2>
-//               <p className="text-gray-700 mt-2">{event.description}</p>
-
-//               <div className="mt-3 text-sm text-gray-500">
-//                 📅 {new Date(event.date).toLocaleDateString()} <br />
-//                 📍 {event.location}
-//               </div>
-
-//               <button
-//                 onClick={() => setSelectedEvent(event)}
-//                 className="mt-5 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
-//               >
-//                 Book Now
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-
-//       {/* Booking Modal */}
-//       {selectedEvent && (
-//         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-//           <div className="bg-white rounded-xl shadow-lg p-6 w-96">
-//             <h2 className="text-xl font-bold mb-4">
-//               Confirm Booking: {selectedEvent.title}
-//             </h2>
-//             <p className="text-gray-600 mb-4">
-//               Are you sure you want to book{" "}
-//               <span className="font-semibold">{selectedEvent.title}</span>?
-//             </p>
-//             <div className="flex justify-end gap-4">
-//               <button
-//                 onClick={() => setSelectedEvent(null)}
-//                 className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
-//               >
-//                 Cancel
-//               </button>
-//               <button
-//                 onClick={handleBooking}
-//                 disabled={bookingLoading}
-//                 className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
-//               >
-//                 {bookingLoading ? "Booking..." : "Confirm Booking"}
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
 
 // export default Events;
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -154,134 +11,295 @@ const Events = () => {
   const [error, setError] = useState("");
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [bookingLoading, setBookingLoading] = useState(false);
+  const [ticketCount, setTicketCount] = useState(1);
+  const [eventPhones, setEventPhones] = useState({}); // store phone per event
 
-  // Fetch events (with localStorage caching)
+  const navigate = useNavigate();
+
+  // Fetch events
   useEffect(() => {
-    const cachedEvents = localStorage.getItem("events");
-    if (cachedEvents) {
-      setEvents(JSON.parse(cachedEvents));
-      setLoading(false);
-    }
-
     const fetchEvents = async () => {
       try {
         const res = await axios.get("http://localhost:4000/api/events");
         setEvents(res.data);
-
-        // Save to cache
-        localStorage.setItem("events", JSON.stringify(res.data));
       } catch (err) {
-        if (!cachedEvents) {
-          setError("Failed to load events");
-        }
+        setError("Failed to load events");
+        console.error("Events fetch error:", err.response?.data || err.message);
       } finally {
         setLoading(false);
       }
     };
-
     fetchEvents();
   }, []);
 
-  // Handle booking
+  // Format phone number for M-Pesa
+  const formatPhoneNumber = (phone) => {
+    if (!phone) return "";
+    let formattedPhone = phone.trim().replace(/\D/g, "");
+
+    if (formattedPhone.startsWith("0") && formattedPhone.length === 10) {
+      formattedPhone = "254" + formattedPhone.substring(1);
+    } else if (formattedPhone.startsWith("7") && formattedPhone.length === 9) {
+      formattedPhone = "254" + formattedPhone;
+    } else if (formattedPhone.startsWith("254") && formattedPhone.length === 12) {
+      // already valid
+    } else {
+      throw new Error("Invalid phone number format. Use 07XXX or +254...");
+    }
+
+    return formattedPhone;
+  };
+
+  // Track phone for each event
+  const handlePhoneChange = (eventId, phoneNumber) => {
+    setEventPhones((prev) => ({
+      ...prev,
+      [eventId]: phoneNumber,
+    }));
+  };
+
+  const getPhoneForEvent = (eventId) => eventPhones[eventId] || "";
+
+  // Calculate total amount
+  const calculateTotalAmount = () => {
+    if (!selectedEvent) return 0;
+    return (selectedEvent.price || 0) * ticketCount;
+  };
+
+  // Handle booking + MPesa payment
   const handleBooking = async () => {
     if (!selectedEvent) return;
 
+    const userStr = localStorage.getItem("user");
+    let user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user || !user.token) {
+      alert("⚠️ Please log in first.");
+      navigate("/login");
+      return;
+    }
+
+    const phone = getPhoneForEvent(selectedEvent._id);
+    if (!phone) {
+      alert("Enter your MPesa phone number (07...)");
+      return;
+    }
+
+    let formattedPhone;
+    try {
+      formattedPhone = formatPhoneNumber(phone);
+    } catch (err) {
+      alert(err.message);
+      return;
+    }
+
     try {
       setBookingLoading(true);
-      const token = localStorage.getItem("token");
 
-      if (!token) {
-        alert("⚠️ Please login first before booking.");
-        return;
-      }
+      console.log("📤 Sending STK Push with:", {
+        eventId: selectedEvent._id,
+        phoneNumber: formattedPhone,
+        amount: calculateTotalAmount(),
+        ticketCount,
+      });
 
-      await axios.post(
-        "http://localhost:4000/api/bookings",
-        { eventId: selectedEvent._id },
-        { headers: { Authorization: `Bearer ${token}` } }
+      // ✅ Call payment controller
+      const response = await axios.post(
+        "http://localhost:4000/api/payments/initiate",
+        {
+          eventId: selectedEvent._id,
+          phoneNumber: formattedPhone,
+          amount: calculateTotalAmount(),
+          ticketCount,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
 
-      alert("✅ Booking successful!");
+      console.log("✅ STK Push response:", response.data);
+      alert("✅ Payment request sent! Check your phone to complete payment.");
+
       setSelectedEvent(null);
+      setTicketCount(1);
     } catch (err) {
-      alert("❌ Booking failed. Please try again.");
+      console.error("❌ STK Push error:", {
+        message: err.message,
+        response: err.response?.data,
+      });
+
+      let errorMessage = "❌ Payment failed.";
+      if (err.response?.data?.errorMessage) {
+        errorMessage += " " + err.response.data.errorMessage;
+      }
+      alert(errorMessage);
     } finally {
       setBookingLoading(false);
     }
   };
 
-  if (loading) {
-    return <p className="text-center text-gray-500">Loading events...</p>;
-  }
-
-  if (error) {
-    return <p className="text-center text-red-500">{error}</p>;
-  }
+  if (loading) return <p>Loading events...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-8 text-center">🎉 Upcoming Events</h1>
+    <div className="relative">
+      {/* 🐶 Welcome Section */}
+      <div
+        className="relative bg-cover bg-center h-[500px] flex items-center justify-center mt-16"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1074&q=80')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-600/70 via-pink-400/50 to-pink-200/30"></div>
+        <div className="relative z-10 text-center text-black px-6">
+          <h1 className="text-7xl font-extrabold drop-shadow-2xl">
+            🐾 Welcome, Dog Lovers!
+          </h1>
+          <p className="mt-4 text-4xl max-w-3xl mx-auto font-light text-black">
+            Join fun-filled dog events, meet other passionate owners, and create
+            unforgettable memories 🐕✨
+          </p>
+          <button
+            onClick={() =>
+              document
+                .getElementById("events-section")
+                .scrollIntoView({ behavior: "smooth" })
+            }
+            className="mt-6 px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-full shadow-lg transition transform hover:scale-105 animate-bounce"
+          >
+            Explore Events 🎉
+          </button>
+        </div>
+      </div>
 
-      {events.length === 0 ? (
-        <p className="text-center text-gray-600">No events available</p>
-      ) : (
+      {/* 🎉 Events Section */}
+      <div id="events-section" className="p-6">
+        <h2 className="text-3xl font-bold mb-8 text-center">
+          🎉 Upcoming Events
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
+          {events.map((ev) => (
             <div
-              key={event._id}
-              className="bg-white shadow-lg rounded-2xl p-5 hover:shadow-xl transition flex flex-col"
+              key={ev._id}
+              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition"
             >
-              {/* ✅ Corrected image field */}
               <img
-                src={event.image || "/default-event.jpg"}
-                alt={event.title}
-                className="w-full h-48 object-cover rounded-lg"
-                onError={(e) => (e.target.src = "/default-event.jpg")}
+                src={ev.image || "/default-event.jpg"}
+                alt={ev.title}
+                className="w-full h-56 object-cover"
               />
-
-              <h2 className="text-xl font-semibold mt-4">{event.title}</h2>
-              <p className="text-gray-700 mt-2">{event.description}</p>
-
-              <div className="mt-3 text-sm text-gray-500">
-                📅 {new Date(event.date).toLocaleDateString()} <br />
-                📍 {event.location}
+              <div className="p-4">
+                <h3 className="text-2xl font-semibold mt-2">{ev.title}</h3>
+                <p className="text-gray-700 mt-2 text-2xl">{ev.description}</p>
+                <p className="text-gray-500 text-2xl">
+                  📅 {new Date(ev.date).toLocaleDateString()} <br /> 📍{" "}
+                  {ev.location}
+                </p>
+                <p className="text-lg font-bold text-green-600 mt-2">
+                  💰 KES {ev.price ?? "Free"} per ticket
+                </p>
+                <div className="mt-4">
+                  <input
+                    type="text"
+                    placeholder="Enter MPesa phone (07...)"
+                    value={getPhoneForEvent(ev._id)}
+                    onChange={(e) => handlePhoneChange(ev._id, e.target.value)}
+                    className="p-2 border rounded w-full mb-2"
+                  />
+                  <button
+                    onClick={() => setSelectedEvent(ev)}
+                    className="mt-2 px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 w-full"
+                  >
+                    Book & Pay
+                  </button>
+                </div>
               </div>
-
-              <button
-                onClick={() => setSelectedEvent(event)}
-                className="mt-5 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
-              >
-                Book Now
-              </button>
             </div>
           ))}
         </div>
-      )}
+      </div>
 
-      {/* Booking Modal */}
+      {/* Confirm Booking Modal */}
       {selectedEvent && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-          <div className="bg-white rounded-xl shadow-lg p-6 w-96">
-            <h2 className="text-xl font-bold mb-4">
-              Confirm Booking: {selectedEvent.title}
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Are you sure you want to book{" "}
-              <span className="font-semibold">{selectedEvent.title}</span>?
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white p-6 rounded shadow-lg w-96">
+            <h2 className="text-lg font-bold mb-3">Confirm Booking</h2>
+            <p>
+              Event: <strong>{selectedEvent.title}</strong>
             </p>
-            <div className="flex justify-end gap-4">
+            <p>
+              Price per ticket:{" "}
+              <strong>KES {selectedEvent.price ?? "Free"}</strong>
+            </p>
+
+            {/* Ticket Quantity */}
+            <div className="my-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Number of tickets:
+              </label>
+              <div className="flex items-center">
+                <button
+                  onClick={() =>
+                    setTicketCount(Math.max(1, ticketCount - 1))
+                  }
+                  className="px-3 py-1 bg-gray-200 rounded-l-md hover:bg-gray-300"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={ticketCount}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value);
+                    if (value >= 1 && value <= 10) setTicketCount(value);
+                  }}
+                  className="w-16 py-1 text-center border-t border-b"
+                />
+                <button
+                  onClick={() =>
+                    setTicketCount(Math.min(10, ticketCount + 1))
+                  }
+                  className="px-3 py-1 bg-gray-200 rounded-r-md hover:bg-gray-300"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <p>
+              Total Amount: <strong>KES {calculateTotalAmount()}</strong>
+            </p>
+            <p>
+              Phone:{" "}
+              <strong>
+                {getPhoneForEvent(selectedEvent._id)} (
+                {formatPhoneNumber(getPhoneForEvent(selectedEvent._id))})
+              </strong>
+            </p>
+            <div className="flex justify-end mt-4 gap-2">
               <button
-                onClick={() => setSelectedEvent(null)}
-                className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+                onClick={() => {
+                  setSelectedEvent(null);
+                  setTicketCount(1);
+                }}
+                className="px-4 py-2 bg-gray-300 rounded"
               >
                 Cancel
               </button>
               <button
                 onClick={handleBooking}
                 disabled={bookingLoading}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+                className="px-4 py-2 bg-green-600 text-white rounded disabled:bg-gray-400"
               >
-                {bookingLoading ? "Booking..." : "Confirm Booking"}
+                {bookingLoading
+                  ? "Processing..."
+                  : `Pay KES ${calculateTotalAmount()}`}
               </button>
             </div>
           </div>
