@@ -368,10 +368,21 @@ export default function EmployeeDashboard() {
   const [editEvent, setEditEvent] = useState(null);
   const [message, setMessage] = useState("");
 
-  const token = localStorage.getItem("token");
-  const employeeId = localStorage.getItem("userId");
-
   const navigate = useNavigate();
+  const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:4000/api";
+  const storedUser = JSON.parse(localStorage.getItem("user") || "{}") || {};
+  const token = localStorage.getItem("token");
+  const employeeId = storedUser.id || storedUser._id || localStorage.getItem("userId") || null;
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (!token || !employeeId || (role !== "employee" && role !== "admin")) {
+      navigate("/login");
+      return;
+    }
+
+    fetchEvents();
+  }, [token, employeeId, navigate]);
 
   // ✅ Logout function
   const handleLogout = async () => {
@@ -383,14 +394,17 @@ export default function EmployeeDashboard() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("role");
+    localStorage.removeItem("user");
     navigate("/login"); // redirect to login
   };
 
   // ✅ Fetch only events created by this employee
   const fetchEvents = async () => {
+    if (!token || !employeeId) return;
+
     try {
       const res = await fetch(
-        `http://localhost:4000/api/events?createdBy=${employeeId}`,
+        `${API_BASE}/events?createdBy=${employeeId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -401,10 +415,6 @@ export default function EmployeeDashboard() {
       console.error("Failed to fetch events", err);
     }
   };
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
 
   // ✅ Handle input change
   const handleChange = (e) => {
@@ -418,13 +428,19 @@ export default function EmployeeDashboard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:4000/api/events", {
+      const payload = {
+        ...event,
+        createdBy: employeeId,
+        capacity: event.capacity ? parseInt(event.capacity, 10) : 0,
+      };
+
+      const response = await fetch(`${API_BASE}/events`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ ...event, createdBy: employeeId }),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
@@ -451,15 +467,20 @@ export default function EmployeeDashboard() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
+      const payload = {
+        ...editEvent,
+        capacity: editEvent.capacity ? parseInt(editEvent.capacity, 10) : 0,
+      };
+
       const response = await fetch(
-        `http://localhost:4000/api/events/${editEvent._id}`,
+        `${API_BASE}/events/${editEvent._id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(editEvent),
+          body: JSON.stringify(payload),
         }
       );
 

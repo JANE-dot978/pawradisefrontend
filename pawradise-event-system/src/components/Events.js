@@ -15,6 +15,7 @@ const Events = () => {
   const [eventPhones, setEventPhones] = useState({}); // store phone per event
 
   const navigate = useNavigate();
+  const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:4000/api";
 
   // Fetch events
   useEffect(() => {
@@ -66,14 +67,15 @@ const Events = () => {
     return (selectedEvent.price || 0) * ticketCount;
   };
 
-  // Handle booking + MPesa payment
+  // Handle booking + MPesa payment using the new backend flow
   const handleBooking = async () => {
     if (!selectedEvent) return;
 
     const userStr = localStorage.getItem("user");
-    let user = userStr ? JSON.parse(userStr) : null;
+    const storedUser = userStr ? JSON.parse(userStr) : null;
+    const token = storedUser?.token || localStorage.getItem("token");
 
-    if (!user || !user.token) {
+    if (!token) {
       alert("⚠️ Please log in first.");
       navigate("/login");
       return;
@@ -96,43 +98,57 @@ const Events = () => {
     try {
       setBookingLoading(true);
 
-      console.log("📤 Sending STK Push with:", {
-        eventId: selectedEvent._id,
-        phoneNumber: formattedPhone,
-        amount: calculateTotalAmount(),
-        ticketCount,
-      });
-
-      // ✅ Call payment controller
-      const response = await axios.post(
-        "http://localhost:4000/api/payments/initiate",
+      const bookingResponse = await axios.post(
+        `${API_BASE}/bookings`,
         {
           eventId: selectedEvent._id,
           phoneNumber: formattedPhone,
-          amount: calculateTotalAmount(),
           ticketCount,
         },
         {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
       );
 
-      console.log("✅ STK Push response:", response.data);
-      alert("✅ Payment request sent! Check your phone to complete payment.");
+      const booking = bookingResponse.data?.booking || bookingResponse.data;
+      const bookingId = booking?._id || booking?.id || booking?.booking?._id;
+
+      if (!bookingId) {
+        throw new Error("Booking was created but the server did not return a booking id.");
+      }
+
+      const paymentResponse = await axios.post(
+        `${API_BASE}/payments/initiate`,
+        {
+          bookingId,
+          phoneNumber: formattedPhone,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("✅ Booking/payment response:", paymentResponse.data);
+      alert(paymentResponse.data?.message || "✅ Payment request sent! Check your phone to complete payment.");
 
       setSelectedEvent(null);
       setTicketCount(1);
     } catch (err) {
-      console.error("❌ STK Push error:", {
+      console.error("❌ Booking/payment error:", {
         message: err.message,
         response: err.response?.data,
       });
 
-      let errorMessage = "❌ Payment failed.";
-      if (err.response?.data?.errorMessage) {
+      let errorMessage = "❌ Booking or payment failed.";
+      if (err.response?.data?.message) {
+        errorMessage += " " + err.response.data.message;
+      } else if (err.response?.data?.errorMessage) {
         errorMessage += " " + err.response.data.errorMessage;
       }
       alert(errorMessage);

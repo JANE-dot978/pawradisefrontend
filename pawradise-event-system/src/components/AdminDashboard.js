@@ -1160,6 +1160,8 @@ export default function AdminDashboard() {
   });
   const [editEvent, setEditEvent] = useState(null);
   const [message, setMessage] = useState("");
+  const [debugResult, setDebugResult] = useState("");
+  const [debugLoading, setDebugLoading] = useState(false);
   const [stats, setStats] = useState({
     totalEvents: 0,
     totalRevenue: 0,
@@ -1168,6 +1170,7 @@ export default function AdminDashboard() {
   });
 
   const navigate = useNavigate();
+  const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:4000/api";
 
   // Calculate statistics
   const calculateStats = useCallback((events) => {
@@ -1183,10 +1186,20 @@ export default function AdminDashboard() {
     });
   }, []);
 
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (!localStorage.getItem("token") || role !== "admin") {
+      navigate("/login");
+      return;
+    }
+
+    fetchEvents();
+  }, [fetchEvents, navigate]);
+
   // Fetch events with useCallback to prevent infinite re-renders
   const fetchEvents = useCallback(async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/events");
+      const res = await fetch(`${API_BASE}/events`);
       const data = await res.json();
       const sortedEvents = data.sort((a, b) => new Date(a.date) - new Date(b.date));
       setEvents(sortedEvents);
@@ -1197,10 +1210,6 @@ export default function AdminDashboard() {
       console.error("Failed to fetch events", err);
     }
   }, [calculateStats]);
-
-  useEffect(() => {
-    fetchEvents();
-  }, [fetchEvents]); // Now fetchEvents is included in the dependency array
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -1250,7 +1259,7 @@ export default function AdminDashboard() {
       };
 
       const response = await fetch(
-        `http://localhost:4000/api/events/${editEvent._id}`,
+        `${API_BASE}/events/${editEvent._id}`,
         {
           method: "PUT",
           headers: {
@@ -1276,7 +1285,7 @@ export default function AdminDashboard() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4000/api/events/${id}`, {
+      await fetch(`${API_BASE}/events/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -1287,6 +1296,26 @@ export default function AdminDashboard() {
     } catch (err) {
       console.error(err);
       setMessage("❌ Failed to delete");
+    }
+  };
+
+  const handleDebugRequest = async (type) => {
+    setDebugLoading(true);
+    setDebugResult("");
+
+    try {
+      const response = await fetch(`${API_BASE}/payments/debug/${type}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      const data = await response.json();
+      setDebugResult(JSON.stringify(data, null, 2));
+    } catch (err) {
+      setDebugResult(`Error loading debug ${type}: ${err.message}`);
+    } finally {
+      setDebugLoading(false);
     }
   };
 
@@ -1344,6 +1373,21 @@ export default function AdminDashboard() {
 
         {view === "create" && !editEvent && (
           <div>
+            <div className="flex gap-3 mb-4">
+              <button type="button" onClick={() => handleDebugRequest("config")} className="bg-purple-600 text-white px-3 py-2 rounded hover:bg-purple-700">
+                {debugLoading ? "Loading..." : "Load payment debug config"}
+              </button>
+              <button type="button" onClick={() => handleDebugRequest("token")} className="bg-indigo-600 text-white px-3 py-2 rounded hover:bg-indigo-700">
+                {debugLoading ? "Loading..." : "Load payment debug token"}
+              </button>
+            </div>
+
+            {debugResult && (
+              <pre className="bg-gray-900 text-green-300 p-4 rounded-lg mb-6 overflow-x-auto text-sm">
+                {debugResult}
+              </pre>
+            )}
+
             <h2 className="text-2xl font-bold mb-6">Create Event</h2>
             <form onSubmit={handleSubmit} className="space-y-4 bg-white shadow-lg rounded-lg p-6">
               <input type="text" name="title" placeholder="Event Title" value={event.title} onChange={handleChange} className="w-full border p-2 rounded" required />

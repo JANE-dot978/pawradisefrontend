@@ -240,7 +240,7 @@
 // }
 
 // export default App;
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
@@ -251,17 +251,18 @@ import Contact from "./components/Contact";
 import AdminDashboard from "./components/AdminDashboard";
 import EmployeeDashboard from "./components/EmployeeDashboard";
 import Login from "./components/Login";
-import Footer from "./components/Footer"; 
+import Signup from "./components/Signup";
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState("");
 
-  // Check if user is already logged in on app load
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-    
+
     if (token && role) {
       setIsAuthenticated(true);
       setUserRole(role);
@@ -271,7 +272,7 @@ function App() {
   const handleLogin = () => {
     const role = localStorage.getItem("role");
     setIsAuthenticated(true);
-    setUserRole(role);
+    setUserRole(role || "");
   };
 
   const handleLogout = () => {
@@ -280,30 +281,37 @@ function App() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+  };
+
+  const ProtectedAdminRoute = ({ children }) => {
+    return isAuthenticated && userRole === "admin" ? children : <Navigate to="/login" replace />;
+  };
+
+  const ProtectedEmployeeRoute = ({ children }) => {
+    return isAuthenticated && (userRole === "employee" || userRole === "admin") ? children : <Navigate to="/login" replace />;
   };
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen"> {/* ADD THIS WRAPPER */}
-        <Navbar 
-          isAuthenticated={isAuthenticated} 
-          userRole={userRole} 
-          onLogout={handleLogout} 
-        />
-        
-        <main className="flex-grow"> {/* ADD THIS MAIN TAG */}
+      <div className="flex flex-col min-h-screen">
+        <Navbar isAuthenticated={isAuthenticated} userRole={userRole} onLogout={handleLogout} />
+
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/employee" element={<EmployeeDashboard />} />
-            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/admin" element={<ProtectedAdminRoute><AdminDashboard /></ProtectedAdminRoute>} />
+            <Route path="/employee" element={<ProtectedEmployeeRoute><EmployeeDashboard /></ProtectedEmployeeRoute>} />
+            <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        
-        <Footer /> 
+
+        <Footer />
       </div>
     </Router>
   );

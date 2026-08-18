@@ -662,10 +662,11 @@ const Login = ({ onClose, onLoginSuccess }) => { // Changed prop name
       // Save to localStorage - INCLUDING NAME
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
+      localStorage.setItem("userId", userId || "");
       localStorage.setItem("user", JSON.stringify({
         id: userId,
         email: userEmail,
-        name: userName, // This is what the navbar needs
+        name: userName,
         role,
         token,
       }));
@@ -680,6 +681,10 @@ const Login = ({ onClose, onLoginSuccess }) => { // Changed prop name
           token
         });
       }
+
+      // Let the Navbar (and any other listeners) know auth state changed,
+      // even when Login is rendered standalone at /login instead of as a modal.
+      window.dispatchEvent(new Event("authchange"));
 
       // Redirect based on role
       if (role === "admin") {

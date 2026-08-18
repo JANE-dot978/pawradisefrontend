@@ -243,14 +243,21 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (stored) setUser(JSON.parse(stored));
+    const syncUserFromStorage = () => {
+      const stored = localStorage.getItem("user");
+      setUser(stored ? JSON.parse(stored) : null);
+    };
+
+    syncUserFromStorage();
+    window.addEventListener("authchange", syncUserFromStorage);
+    return () => window.removeEventListener("authchange", syncUserFromStorage);
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("userId");
     setUser(null);
     setIsMenuOpen(false);
     navigate("/");
