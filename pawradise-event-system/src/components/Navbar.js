@@ -230,10 +230,17 @@
 
 // export default Navbar;
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../components/logo.jpg";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { PawPrint, Menu, X, ArrowRight } from "lucide-react";
 import Login from "../components/Login.js";
 import Signup from "./Signup.js";
+
+const navLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/events", label: "Events" },
+  { to: "/contact", label: "Contact Us" },
+];
 
 const Navbar = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -241,6 +248,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger state
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const syncUserFromStorage = () => {
@@ -266,7 +274,7 @@ const Navbar = () => {
   const handleLoginSuccess = (userData) => {
     setUser(userData);
     setIsLoginOpen(false);
-    
+
     // Redirect based on role
     if (userData.role === "admin") {
       navigate("/admin");
@@ -282,56 +290,56 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 bg-black shadow-md">
+    <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 bg-[#f7ecd0] shadow-sm">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center space-x-3">
-          <img
-            src={logo}
-            alt="company logo"
-            className="h-16 w-32 object-contain"
-          />
-          <div className="text-xl md:text-3xl font-bold text-white">
-            PawradiseEventSystem
-          </div>
-        </div>
+        <Link to="/" className="flex items-center gap-2">
+          <PawPrint size={28} className="text-orange-500" />
+          <span className="font-heading text-2xl text-black">Pawradise</span>
+        </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-10 items-center">
-          <Link to="/" className="font-bold text-2xl text-white hover:text-pink-400 transition">
-            Home
-          </Link>
-          <Link to="/about" className="font-bold text-2xl text-white hover:text-pink-400 transition">
-            About
-          </Link>
-          <Link to="/events" className="font-bold text-2xl text-white hover:text-pink-400 transition">
-            Events
-          </Link>
-          <Link to="/contact" className="font-bold text-2xl text-white hover:text-pink-400 transition">
-            Contact Us
-          </Link>
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.to;
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`font-semibold transition pb-1 border-b-2 ${
+                  isActive
+                    ? "text-orange-500 border-orange-500"
+                    : "text-black border-transparent hover:text-orange-500"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </div>
 
+        <div className="hidden md:flex items-center gap-4">
           {!user ? (
             <>
               <button
                 onClick={() => setIsSignupOpen(true)}
-                className="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded transition"
+                className="font-semibold text-black hover:text-orange-500 transition"
               >
                 Sign Up
               </button>
               <button
                 onClick={() => setIsLoginOpen(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition"
+                className="font-semibold text-black hover:text-orange-500 transition"
               >
                 Login
               </button>
             </>
           ) : (
-            <div className="relative">
-              <button className="text-white font-bold hover:text-pink-400 transition">
-                {user.name} ⬇
+            <div className="relative group">
+              <button className="font-semibold text-black hover:text-orange-500 transition">
+                {user.name} ⌄
               </button>
-              <div className="absolute right-0 bg-white mt-2 rounded shadow-lg p-4 min-w-48">
+              <div className="absolute right-0 hidden group-hover:block bg-white mt-2 rounded-lg shadow-lg p-4 min-w-48">
                 <p className="text-gray-800 font-medium">Welcome, {user.name}</p>
                 <p className="text-sm text-gray-500">Role: {user.role}</p>
                 <button
@@ -343,80 +351,60 @@ const Navbar = () => {
               </div>
             </div>
           )}
+          <Link
+            to="/events"
+            className="inline-flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-5 rounded-full shadow transition"
+          >
+            Explore Events <ArrowRight size={16} />
+          </Link>
         </div>
 
         {/* Mobile Hamburger Menu Button */}
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className="text-white focus:outline-none"
+            className="text-black focus:outline-none"
           >
-            <svg
-              className="h-8 w-8"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden mt-4 bg-black rounded-lg p-4">
-          <Link 
-            to="/" 
-            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+        <div className="md:hidden mt-4 bg-white rounded-xl p-4 shadow-lg">
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.to;
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`block py-3 font-semibold text-lg transition ${
+                  isActive ? "text-orange-500" : "text-black hover:text-orange-500"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+
+          <Link
+            to="/events"
             onClick={() => setIsMenuOpen(false)}
+            className="mt-3 inline-flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-5 rounded-full shadow transition"
           >
-            Home
-          </Link>
-          <Link 
-            to="/about" 
-            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            About
-          </Link>
-          <Link 
-            to="/events" 
-            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Events
-          </Link>
-          <Link 
-            to="/contact" 
-            className="block py-3 text-white font-bold text-xl hover:text-pink-400 transition"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Contact Us
+            Explore Events <ArrowRight size={16} />
           </Link>
 
           {!user ? (
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-3 border-t border-gray-200 pt-4">
               <button
                 onClick={() => {
                   setIsSignupOpen(true);
                   setIsMenuOpen(false);
                 }}
-                className="block w-full text-left py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+                className="block w-full text-left py-2 text-black font-semibold text-lg hover:text-orange-500 transition"
               >
                 Sign Up
               </button>
@@ -425,23 +413,23 @@ const Navbar = () => {
                   setIsLoginOpen(true);
                   setIsMenuOpen(false);
                 }}
-                className="block w-full text-left py-3 text-white font-bold text-xl hover:text-pink-400 transition"
+                className="block w-full text-left py-2 text-black font-semibold text-lg hover:text-orange-500 transition"
               >
                 Login
               </button>
             </div>
           ) : (
-            <div className="mt-4">
-              <div className="py-3 text-white">
-                <p className="font-bold">Welcome, {user.name}</p>
-                <p className="text-sm text-gray-400">Role: {user.role}</p>
+            <div className="mt-4 border-t border-gray-200 pt-4">
+              <div className="py-2 text-black">
+                <p className="font-semibold">Welcome, {user.name}</p>
+                <p className="text-sm text-gray-500">Role: {user.role}</p>
               </div>
               <button
                 onClick={() => {
                   handleLogout();
                   setIsMenuOpen(false);
                 }}
-                className="block w-full text-left py-3 text-red-500 font-bold text-xl hover:text-red-400 transition"
+                className="block w-full text-left py-2 text-red-500 font-semibold text-lg hover:text-red-600 transition"
               >
                 Logout
               </button>
@@ -452,9 +440,9 @@ const Navbar = () => {
 
       {/* Modals */}
       {isLoginOpen && (
-        <Login 
-          onClose={() => setIsLoginOpen(false)} 
-          onLoginSuccess={handleLoginSuccess} 
+        <Login
+          onClose={() => setIsLoginOpen(false)}
+          onLoginSuccess={handleLoginSuccess}
         />
       )}
       {isSignupOpen && (

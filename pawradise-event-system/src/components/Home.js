@@ -1,11 +1,31 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import video from "../components/dogshow.mp4";
-import myImage from "../components/ceo.jpg"; 
-import Image from "../components/mandog.jpg";
-import Image1 from "../components/mandogsss.webp";
-import Image2 from "../components/womandog.jpg";
-import Image3 from "../components/black women with dogs.jpg";
+import {
+  Search,
+  CalendarCheck,
+  PawPrint,
+  Users,
+  ShieldCheck,
+  Compass,
+  ArrowRight,
+  Star,
+  Ticket,
+  Info,
+} from "lucide-react";
+
+import heroImage from "../components/dogwalks.webp";
+import whyChooseImage from "../components/womandog.jpg";
+import ctaImage from "../components/gallery15.jpg";
+
+import pic1 from "../components/pic1.webp";
+import pic2 from "../components/pic2.jpg";
+import pic3 from "../components/pic3.jpg";
+import pic4 from "../components/pic4.jpeg";
+
+import avatar1 from "../components/mandog.jpg";
+import avatar2 from "../components/gallery12.jpg";
+import avatar3 from "../components/shiku.jpg";
+
 import Imagea from "../components/gallery1.jpg";
 import Imageb from "../components/gallery2.jpg";
 import Imagec from "../components/gallery3.jpg";
@@ -19,359 +39,444 @@ import Imagej from "../components/galley10.jpeg";
 import Imagek from "../components/gallery11.jpeg";
 import Imagel from "../components/gallery13.jpg";
 import Imagem from "../components/gallery12.jpg";
-import Imagen from"../components/gallery14.jpg";
-import Imageo from"../components/gallery15.jpg";
-import pic1 from "../components/pic1.webp";
-import pic2 from "../components/pic2.jpg";
-import pic3 from "../components/pic3.jpg";
-import pic4 from "../components/pic4.jpeg";
+import Imagen from "../components/gallery14.jpg";
+import Imageo from "../components/gallery15.jpg";
 
+const NEXT_EVENT_DATE = new Date("2026-09-12T09:00:00");
 
+const events = [
+  {
+    image: pic4,
+    title: "Dog Training Workshop",
+    description: "Learn tips and tricks from top trainers.",
+    date: "22nd Aug 2026",
+    location: "Karura Forest, Nairobi",
+    price: "KES 1,500",
+  },
+  {
+    image: pic3,
+    title: "Pet Festival",
+    description: "A fun day out for pets and owners.",
+    date: "5th Sep 2026",
+    location: "Uhuru Gardens, Nairobi",
+    price: "KES 2,000",
+  },
+  {
+    image: pic2,
+    title: "Dog Agility Competition",
+    description: "Watch dogs show off their skills!",
+    date: "19th Sep 2026",
+    location: "Ngong Racecourse, Nairobi",
+    price: "KES 2,500",
+  },
+  {
+    image: pic1,
+    title: "Charity Dog Walk",
+    description: "Walk with your furry friends for a cause.",
+    date: "3rd Oct 2026",
+    location: "Karura Forest, Nairobi",
+    price: "KES 1,000",
+  },
+];
+
+const steps = [
+  {
+    step: "01",
+    icon: Search,
+    title: "Discover",
+    subtitle: "Find Your Adventure",
+    description:
+      "Browse dog-friendly events near you, from hikes and agility challenges to social meetups and outdoor adventures.",
+  },
+  {
+    step: "02",
+    icon: CalendarCheck,
+    title: "Book",
+    subtitle: "Save your spot",
+    description:
+      "Choose an event, check the details, and book your place quickly and securely.",
+  },
+  {
+    step: "03",
+    icon: PawPrint,
+    title: "Enjoy",
+    subtitle: "Make Memories Together",
+    description:
+      "Show up, meet fellow dog lovers, and enjoy an unforgettable experience with your best friend.",
+  },
+];
+
+const benefits = [
+  {
+    icon: Users,
+    title: "Community",
+    description:
+      "Connect with fellow dog lovers, share stories, and build friendships that outlast the event.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Safety",
+    description:
+      "Every event runs in supervised, dog-friendly spaces so you can relax and let them off the leash.",
+  },
+  {
+    icon: Compass,
+    title: "Adventure",
+    description:
+      "From hikes to pool days, discover new experiences your dog will drag you back to again and again.",
+  },
+];
+
+const testimonials = [
+  {
+    avatar: avatar1,
+    quote:
+      "Pawradise completely changed our weekends. Biscuit gets so excited when I grab his leash now — he knows we're going somewhere amazing.",
+    name: "Jane M.",
+    meta: "Golden Retriever Mum · Nairobi",
+    rating: 5,
+  },
+  {
+    avatar: avatar2,
+    quote:
+      "The booking system is so easy to use. I never miss a dog event anymore. Highly recommend Pawradise to every dog owner I know!",
+    name: "Brian O.",
+    meta: "Husky Dad · Nairobi",
+    rating: 4,
+  },
+  {
+    avatar: avatar3,
+    quote:
+      "Such a brilliant idea. My dog is always excited whenever we attend Pawradise events — the community is the best part.",
+    name: "Aisha L.",
+    meta: "Shepherd Mum · Nairobi",
+    rating: 5,
+  },
+];
+
+const galleryImages = [
+  { src: Imagee, alt: "Dog and owner happy moments" },
+  { src: Imageb, alt: "Dogs with owners during event" },
+  { src: Imagec, alt: "Friends and dogs together" },
+  { src: Imaged, alt: "Dog jumping for a ball" },
+  { src: Imagek, alt: "Owners with dogs at an event" },
+  { src: Imagef, alt: "Dogs happy moments" },
+  { src: Imageg, alt: "Owner with a dog and trophy" },
+  { src: Imagem, alt: "Owner holding a small dog" },
+  { src: Imagei, alt: "Team with shelter dogs" },
+  { src: Imagej, alt: "Group event with dogs" },
+  { src: Imagea, alt: "Group of friends with dogs" },
+  { src: Imagel, alt: "Studio dog photoshoot" },
+  { src: Imageh, alt: "Dog leaping over an obstacle" },
+  { src: Imagen, alt: "Moments after a dog walk" },
+  { src: Imageo, alt: "Child running with a dog" },
+];
+
+const getTimeRemaining = () => {
+  const diff = Math.max(0, NEXT_EVENT_DATE.getTime() - Date.now());
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+};
 
 const Home = () => {
+  const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTimeLeft(getTimeRemaining()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const countdownUnits = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Min", value: timeLeft.minutes },
+    { label: "Sec", value: timeLeft.seconds },
+  ];
+
   return (
     <div className="flex flex-col">
-      {/* HERO Section: Video with overlay */}
-      <div className="relative h-screen w-full">
-        {/* Background video */}
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        >
-          <source src={video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      {/* HERO */}
+      <section className="relative min-h-[600px] flex items-center px-6 md:px-16 py-24">
+        <img
+          src={heroImage}
+          alt="Dogs and their humans enjoying an outdoor event"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
 
-        {/* Overlay content */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-10 flex flex-col items-center justify-center text-white text-center px-4">
-          <h1 className="text-4xl md:text-8xl font-bold mb-4">
-            Welcome to Pawradise Event System
-          </h1>
-          <h2 className="text-2xl md:text-6xl mb-4">
-            Your Hub For Fun Dog Activities!
+        <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-10 items-center">
+          <div className="md:col-span-2 text-white">
+            <span className="inline-flex items-center gap-2 bg-white/90 text-gray-800 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+              📅 12 SEP 2026 · NAIROBI
+            </span>
+            <h1 className="font-heading text-5xl md:text-6xl text-orange-400 mb-4">
+              Dog's Park Day
+            </h1>
+            <p className="text-lg md:text-xl max-w-xl mb-8 text-white/90">
+              A day of play, socializing and outdoor fun for dogs and their humans.
+            </p>
+            <div className="flex flex-wrap gap-4 mb-6">
+              <Link
+                to="/signup"
+                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full shadow transition"
+              >
+                <Ticket size={18} /> Book Your Spot
+              </Link>
+              <Link
+                to="/events"
+                className="inline-flex items-center gap-2 border-2 border-white text-white font-semibold py-3 px-6 rounded-full hover:bg-white hover:text-gray-900 transition"
+              >
+                <Info size={18} /> View Details
+              </Link>
+            </div>
+            <p className="text-sm text-white/80">All breeds welcome • Safe play zones</p>
+          </div>
+
+          <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-white">
+            <p className="text-xs uppercase tracking-wide text-white/80 mb-3 text-center">
+              Next adventure starts in
+            </p>
+            <div className="grid grid-cols-4 gap-2 text-center">
+              {countdownUnits.map((unit) => (
+                <div key={unit.label}>
+                  <p className="text-2xl md:text-3xl font-heading text-orange-400">
+                    {String(unit.value).padStart(2, "0")}
+                  </p>
+                  <p className="text-[10px] uppercase text-white/70">{unit.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* UPCOMING EVENTS */}
+      <section className="bg-white py-16 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+            <div>
+              <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">
+                Upcoming Events
+              </h2>
+              <div className="w-16 h-1 bg-orange-500 mb-2"></div>
+              <p className="text-gray-600">More Adventures await</p>
+            </div>
+            <Link
+              to="/events"
+              className="inline-flex items-center gap-1 text-orange-500 font-semibold hover:text-orange-600 transition"
+            >
+              Explore All Events <ArrowRight size={18} />
+            </Link>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {events.map((event) => (
+              <div
+                key={event.title}
+                className="bg-[#f7ecd0] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition"
+              >
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5">
+                  <h3 className="font-heading text-xl text-black mb-2">{event.title}</h3>
+                  <p className="text-gray-700 text-sm mb-4">{event.description}</p>
+                  <p className="text-sm font-semibold text-black">{event.date}</p>
+                  <p className="text-sm text-gray-600 mb-1">{event.location}</p>
+                  <p className="text-sm font-semibold text-orange-600 mb-4">{event.price}</p>
+                  <Link
+                    to="/signup"
+                    className="inline-flex items-center gap-1 border border-orange-400 text-orange-600 hover:bg-orange-500 hover:text-white transition rounded-full px-4 py-1.5 text-sm font-medium"
+                  >
+                    View Event <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="bg-[#f7ecd0] py-20 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">How It Works</h2>
+          <div className="w-16 h-1 bg-orange-500 mb-3"></div>
+          <p className="text-gray-700 mb-12">From Discovery to Tail-Wagging Adventures</p>
+
+          <div className="space-y-12">
+            {steps.map((item, index) => {
+              const Icon = item.icon;
+              const reversed = index % 2 === 1;
+              return (
+                <div
+                  key={item.step}
+                  className={`flex flex-col md:flex-row items-center gap-8 ${
+                    reversed ? "md:flex-row-reverse" : ""
+                  }`}
+                >
+                  <div className={`flex-1 ${reversed ? "md:text-right" : ""}`}>
+                    <h3 className="font-heading text-2xl text-black mb-1">{item.title}</h3>
+                    <p className="text-orange-600 font-semibold mb-2">{item.subtitle}</p>
+                    <p className="text-gray-700 max-w-sm md:ml-auto">
+                      {reversed ? item.description : item.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col items-center">
+                    <span className="text-xs uppercase text-gray-500">Step</span>
+                    <span className="font-heading text-3xl text-orange-500">{item.step}</span>
+                  </div>
+
+                  <div className="flex-1 flex justify-center">
+                    <div className="w-28 h-28 rounded-full bg-orange-500 flex items-center justify-center shadow-lg">
+                      <Icon size={44} className="text-white" />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE PAWRADISE */}
+      <section className="bg-white py-20 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">
+              Why Choose Pawradise
+            </h2>
+            <div className="w-16 h-1 bg-orange-500 mb-3"></div>
+            <p className="text-gray-600 mb-10">More Adventures. More Wagging. More Memories.</p>
+
+            <h3 className="font-heading text-2xl md:text-3xl text-orange-500 mb-4">
+              Everything Your Dog Loves, In One Place.
+            </h3>
+            <p className="text-gray-700">
+              We built Pawradise because great dog experiences deserve more than a Facebook
+              group and crossed fingers. Here's what makes us different.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-8">
+            <img
+              src={whyChooseImage}
+              alt="A Pawradise community member with her dog"
+              className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover shadow-xl shrink-0"
+            />
+            <div className="flex flex-col gap-4 w-full">
+              {benefits.map((benefit) => {
+                const Icon = benefit.icon;
+                return (
+                  <div
+                    key={benefit.title}
+                    className="flex items-start gap-4 bg-[#f7ecd0] rounded-2xl p-4 shadow-md"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shrink-0">
+                      <Icon size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <p className="font-heading text-black mb-1">{benefit.title}</p>
+                      <p className="text-sm text-gray-700">{benefit.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="bg-[#f7ecd0] py-20 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">Testimonials</h2>
+          <div className="w-16 h-1 bg-orange-500 mb-3"></div>
+          <p className="text-gray-700 mb-12">Good Times. Happy Dogs. Happy Owners.</p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <div
+                key={testimonial.name}
+                className="bg-white rounded-3xl rounded-tl-none p-6 shadow-md"
+              >
+                <div className="flex items-center gap-1 text-orange-400 mb-4">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={18}
+                      fill={i < testimonial.rating ? "currentColor" : "none"}
+                    />
+                  ))}
+                </div>
+                <p className="text-gray-800 mb-6">"{testimonial.quote}"</p>
+                <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="font-heading text-sm text-black">{testimonial.name}</p>
+                    <p className="text-xs text-gray-500">{testimonial.meta}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section className="bg-white py-20 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">Gallery</h2>
+          <div className="w-16 h-1 bg-orange-500 mb-10"></div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galleryImages.map((image) => (
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                className="h-48 w-full object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CALL TO ACTION */}
+      <section className="relative py-24 px-6 text-center">
+        <img
+          src={ctaImage}
+          alt="Happy dog"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <h2 className="font-heading text-4xl md:text-5xl text-orange-400 mb-4">
+            Ready to Treat Your Dog?
           </h2>
-          <p className="text-lg md:text-3xl max-w-2xl">
-            Explore, book, and enjoy fun dog-friendly events with our trusted platform.
+          <p className="text-white/90 text-lg mb-8">
+            Don't let another weekend go by without a tail-wagging story to tell. Thousands of
+            dogs and their humans are already exploring.
           </p>
-          <br />
-          <button className="mt-6 bg-pink-600 hover:bg-pink-400 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300">
-            Explore Events
-          </button>
-        </div>
-      </div>
-      <section className="bg-pink-50 py-16 px-6">
-      <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-6xl font-bold mb-8 text-black">How It Works 🐾</h2>
-        <p className="text-black mb-12 text-3xl">
-          Booking your dog's next fun event is simple! Just follow these easy steps:
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Step 1 */}
-          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-            <div className="text-3xl mb-4">1️⃣</div>
-            <h3 className="font-semibold text-2xl mb-2">Sign Up / Log In</h3>
-            <p className="text-gray-600 text-2xl">
-              Create an account or log in to your Pawradise profile to start booking events.
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-            <div className="text-3xl mb-4">2️⃣</div>
-            <h3 className="font-semibold text-2xl mb-2">Browse Events</h3>
-            <p className="text-gray-600 text-2xl">
-              Explore upcoming dog events like shows, playdates, and training sessions.
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-            <div className="text-3xl mb-4">3️⃣</div>
-            <h3 className="font-semibold text-2xl mb-2">Book & Pay</h3>
-            <p className="text-gray-600 text-2xl">
-              Select your favorite event and pay securely via Mpesa  quick and easy!
-            </p>
-          </div>
-
-          {/* Step 4 */}
-          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-            <div className="text-3xl mb-4">4️⃣</div>
-            <h3 className="font-semibold text-2xl mb-2">Enjoy & Connect</h3>
-            <p className="text-gray-600 text-2xl">
-              Attend the event, have fun, and meet other dog lovers in the community.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section className="py-12 bg-pink-50">
-  <div className="max-w-7xl mx-auto px-6">
-    {/* Section Title */}
-    <h2 className="text-5xl font-bold text-center mb-10 text-black">
-      Upcoming Events
-    </h2>
-
-    {/* Event Cards Grid */}
-    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      
-      {/* Event Card 1 */}
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
-        <img
-          src={pic4}
-          alt="Dog Training Workshop"
-          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
-        />
-        <div className="p-5">
-          <h3 className="text-xl font-semibold text-gray-800">Dog Training Workshop</h3>
-          <p className="text-gray-600 mt-2">Learn tips and tricks from top trainers.</p>
-          <p className="text-gray-900 font-bold mt-3">Ksh 1,500</p>
-          <a
-            href="/signup"
-            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800"
+          <Link
+            to="/events"
+            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-full shadow transition"
           >
-            Book & Pay
-          </a>
+            Explore Events <ArrowRight size={18} />
+          </Link>
         </div>
-      </div>
-
-      {/* Event Card 2 */}
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
-        <img
-          src={pic3}
-          alt="Pet Festival"
-          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
-        />
-        <div className="p-5">
-          <h3 className="text-xl font-semibold text-gray-800">Pet Festival</h3>
-          <p className="text-gray-600 mt-2">A fun day out for pets and owners.</p>
-          <p className="text-gray-900 font-bold mt-3">Ksh 2,000</p>
-          <a
-            href="/signup"
-            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700"
-          >
-            Book & Pay
-          </a>
-        </div>
-      </div>
-
-      {/* Event Card 3 */}
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
-        <img
-          src={pic2}
-          alt="Dog Agility Competition"
-          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
-        />
-        <div className="p-5">
-          <h3 className="text-xl font-semibold text-gray-800">Dog Agility Competition</h3>
-          <p className="text-gray-600 mt-2">Watch dogs show off their skills!</p>
-          <p className="text-gray-900 font-bold mt-3">Ksh 2,500</p>
-          <a
-            href="/signup"
-            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700"
-          >
-            Book & Pay
-          </a>
-        </div>
-      </div>
-
-      {/* Event Card 4 */}
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
-        <img
-          src={pic1}
-          alt="Charity Dog Walk"
-          className="w-full h-48 md:h-64 rounded-lg shadow-lg object-cover"
-        />
-        <div className="p-5">
-          <h3 className="text-xl font-semibold text-gray-800">Charity Dog Walk</h3>
-          <p className="text-gray-600 mt-2">Walk with your furry friends for a cause.</p>
-          <p className="text-gray-900 font-bold mt-3">Ksh 1,000</p>
-          <a
-            href="/signup"
-            className="mt-4 inline-block w-full text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700"
-          >
-            Book & Pay
-          </a>
-        </div>
-      </div>
-    </div>
-
-    {/* View All Events Button */}
-    <div className="mt-12 text-center">
-      <a
-        href="/events"
-        className="inline-block bg-pink-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-pink-900"
-      >
-        View All Events
-      </a>
-    </div>
-  </div>
-</section>
-
-
-      {/* ABOUT Section: Visible below the video */}
-<div className="bg-pink-50 text-gray-800 py-12 px-6 md:px-20 flex flex-col md:flex-row items-center md:items-start md:gap-4 mx-auto">
-  <img
-    src={myImage}
-    alt="You holding a dog at an event"
-    className="w-64 md:w-[700px] rounded-lg shadow-lg object-cover"
-  />
-  <div className="md:ml-6 mt-6 md:mt-0 max-w-xl bg-pink-50">
-    <h2 className="text-6xl font-extrabold mb-6">About Me</h2>
-   <p className="text-2xl leading-relaxed">
-      Hi! I'm the founder of <strong>Pawradise Event System</strong>, and a passionate dog lover who's always believed that dogs deserve just as much joy, connection, and community as we do. My journey started at a local dog show, where I saw the excitement and happiness dogs experienced when socializing and showing off their unique personalities.
-      <br /><br />
-      I created this platform to make it easier for dog owners to find and join fun events like dog festivals, training camps, adoption drives, and pet playdates. Whether you're a first-time dog parent or a seasoned trainer, Pawradise is your one-stop destination for discovering and booking dog-friendly activities.
-      <br /><br />
-      I believe dogs bring people together, and every event is a chance to build lasting memories, share knowledge, and celebrate the bond we share with our furry friends.
-    </p>
-  </div>
-</div>
-
-{/* WHY PAWRADISE Section */}
-<section className="bg-pink-50 py-12 px-6 text-center">
-  <h2 className="text-5xl font-extrabold mb-8 text-black">Why Pawradise?</h2>
-  <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-    <div className="bg-white p-10 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-bold mb-4">Pet-Friendly Events 🐶</h3>
-      <p className="text-blue-700 text-3xl">We create safe, exciting environments where dogs can have fun and socialize.</p>
-    </div>
-    <div className="bg-white p-10 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-bold mb-4">Meet Dog Lovers 👩‍👩‍👦‍👦</h3>
-      <p className="text-blue-700 text-3xl">Connect with a community of pet parents who love dogs just as much as you do!</p>
-    </div>
-    <div className="bg-white p-10 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-bold mb-4">Easy Booking📳</h3>
-      <p className="text-blue-700 text-3xl">Book events in just a few clicks with our user-friendly system.</p>
-    </div>
-    <div className="bg-white p-10 rounded-lg shadow-lg">
-  <h3 className="text-2xl font-bold mb-4">Expert Training Tips🎓</h3>
-  <p className=" text-blue-700 text-3xl">
-    Our platform offers access to events hosted by certified trainers and behaviorists
-  </p>
-</div>
-<div className="bg-white p-10 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-bold mb-4">Tailored Experiences 🎯</h3>
-      <p className="text-blue-700 text-3xl">Find events that match your dog’s breed, energy level, and interests for a truly personal experience</p>
-    </div>
-    <div className="bg-white p-10 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-bold mb-4"> Trusted by Dog Lovers🐾</h3>
-      <p className="text-blue-700 text-3xl">Hundreds of pet owners trust Pawradise to deliver safe and joyful events every month.</p>
-    </div>
-
-  </div>
-</section>
-{/* TESTIMONIALS Section */}
-<section className="bg-pink-50 py-16 px-6 text-center">
-  <h2 className="text-5xl font-extrabold text-black mb-10">What Dog Owners Say</h2>
-  <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-    
-    {/* Testimonial 1 */}
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-      <img
-        src={Image1}
-        alt="User 1"
-        className="w-20 h-20 mx-auto mb-4 rounded-full object-cover"
-      />
-      <h3 className="text-lg font-semibold text-gray-700">Jane M.</h3>
-      <p className="text-black italic mt-2 text-2xl">
-        “Pawradise helped my pup make so many new friends. The events are well organized and so much fun!”
-      </p>
-      <p className="mt-3 text-yellow-500">⭐⭐⭐⭐⭐</p>
-    </div>
-
-    {/* Testimonial 2 */}
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-      <img
-       src={Image2}
-        alt="User 2"
-        className="w-20 h-20 mx-auto mb-4 rounded-full object-cover"
-      />
-      <h3 className="text-lg font-semibold text-gray-700">Brian O.</h3>
-      <p className="text-black italic mt-2 text-2xl">
-        “The booking system is so easy to use. I never miss a dog event anymore. Highly recommend!”
-      </p>
-      <p className="mt-3 text-yellow-500">⭐⭐⭐⭐</p>
-    </div>
-
-    {/* Testimonial 3 */}
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-      <img
-       src={Image}
-        alt="User 3"
-        className="w-20 h-20 mx-auto mb-4 rounded-full object-cover"
-      />
-      <h3 className="text-lg font-semibold text-gray-700">Aisha L.</h3>
-      <p className="text-black italic mt-2 text-2xl">
-        “Such a brilliant idea. My dog is always excited whenever we attend Pawradise events.”
-      </p>
-      <p className="mt-3 text-yellow-500">⭐⭐⭐⭐⭐</p>
-    </div>
-
-  </div>
-</section>
-{/* CALL TO ACTION Section */}
-<section className="bg-pink-50 py-16 px-6">
-  <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 text-center md:text-left">
-    
-    {/* Text content */}
-    <div className="md:w-1/2">
-      <h2 className="text-5xl font-extrabold text-gray-800 mb-4">
-        Ready to Treat Your Dog?
-      </h2>
-      <p className="text-3xl text-black mb-6">
-        Join our growing Pawradise family and give your pup the adventure they deserve!
-      </p>
-      <Link
-        to="/events"
-        className="bg-blue-700 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block"
-      >
-        Book Your First Event 🐶
-      </Link>
-    </div>
-
-    {/* Side image */}
-    <div className="md:w-1/2">
-      <img
-       src={Image3}
-        alt="People and dogs enjoying an event"
-        className="rounded-lg shadow-md w-full object-cover max-h-[400px]"
-      />
-    </div>
-  </div>
-</section>
-
-<section className="bg-pink-50 py-16 px-6">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-5xl font-extrabold text-gray-800 mb-4">Moments from Pawradise 🐾</h2>
-    <p className="text-gray-600 mb-10 text-2xl">
-      A glimpse into our fun-filled dog events captured with wagging tails and happy faces!<br></br>
-      The unforgettable momments
-    </p>
-
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <img src={Imagee} alt="Dog nd owner happy momments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imageb} alt=" dogs  with owners during event" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagec} alt="happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imaged} alt="Puppy showcasing skills" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagek} alt="owners after at event" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagef} alt="Dogs happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imageg} alt="owner with a dog and medal" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagem} alt="Owner hugging a dog" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagei} alt="after grooming session happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagej} alt="happy moments" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagea} alt="happy puppies and owners" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagel} alt="kid and dog shoot session" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imageh} alt="dog jumping" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imagen} alt="moments after dog walks" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-      <img src={Imageo} alt="happy dog with a kid running" className="h-48 w-full object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-    </div>
-  </div>
-</section>
-
-
+      </section>
     </div>
   );
 };

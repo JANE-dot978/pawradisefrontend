@@ -1,5 +1,24 @@
 import React, { useState } from "react";
-import image from "../components/logo.jpg";
+import { Mail, Phone, MapPin } from "lucide-react";
+import backgroundImage from "../components/poodle-torn-paper.png";
+
+const contactDetails = [
+  {
+    icon: Mail,
+    label: "Email Us",
+    value: "info@pawradise.com",
+  },
+  {
+    icon: Phone,
+    label: "Call Us",
+    value: "+254 712 345 678",
+  },
+  {
+    icon: MapPin,
+    label: "Our Location",
+    value: "Nairobi, Kenya",
+  },
+];
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -41,112 +60,105 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-pink-50">
-      <div className="max-w-6xl mx-auto px-4">
-        
-        <div className="flex flex-col items-center mb-8 pt-24">
-          <img
-            src={image}
-            alt="Pawradise logo"
-            className="rounded-xl shadow-lg max-h-[300px] object-contain mb-4"
-          />
-          <h2 className="text-7xl font-bold text-black text-center">
-            Contact Pawradise
-          </h2>
-          <p className="text-black text-center max-w-lg text-2xl">
-            We'd love to hear from you! Fill in the form below and our team will
-            get back to you as soon as possible.
-          </p>
-        </div>
+    <section className="relative overflow-hidden bg-[#f7ecd0] pt-32 pb-20 px-6 md:px-16">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute inset-0 bg-no-repeat"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "auto 100%",
+          backgroundPosition: "100% 0%",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to right, #f7ecd0 0%, #f7ecd0 55%, rgba(247,236,208,0) 82%)",
+        }}
+      />
+      <div className="pointer-events-none select-none absolute inset-0 bg-[#f7ecd0]/70" />
 
-      
-        <div className="grid md:grid-cols-2 gap-8">
-  
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <h1 className="font-heading text-5xl md:text-6xl text-black mb-3">Contact Us</h1>
+        <div className="w-16 h-1 bg-orange-500 mb-4"></div>
+        <p className="text-gray-700 text-lg max-w-xl mb-16">
+          We'd love to hear from you! Fill in the form below and our team will get back to
+          you as soon as possible.
+        </p>
+
+        <div className="grid md:grid-cols-5 gap-10 items-start">
+          <div className="md:col-span-2">
+            <h2 className="font-heading text-2xl text-black mb-6">Get In Touch</h2>
+            <div className="space-y-6">
+              {contactDetails.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.label} className="flex items-center gap-4">
+                    <div className="w-11 h-11 rounded-full bg-orange-500 flex items-center justify-center shrink-0">
+                      <Icon size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <p className="font-heading text-black">{item.label}</p>
+                      <p className="text-gray-700">{item.value}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
           <form
             onSubmit={handleSubmit}
-            className="bg-white shadow-md rounded-lg p-6 space-y-4"
+            className="md:col-span-3 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg p-8 space-y-5"
           >
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-gray-700 font-semibold mb-2"
-              >
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-gray-700 font-semibold mb-2"
-              >
-                Your Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-gray-700 font-semibold mb-2"
-              >
-                Your Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                value={form.message}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
-              ></textarea>
-            </div>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              className="w-full bg-white/70 border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="w-full bg-white/70 border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              rows="5"
+              value={form.message}
+              onChange={handleChange}
+              required
+              className="w-full bg-white/70 border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            ></textarea>
 
             <button
               type="submit"
               disabled={loading}
-              className="bg-pink-700 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition"
+              className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-semibold py-4 rounded-full shadow transition"
             >
-              {loading ? "Sending..." : "Send Message"}
+              {loading ? "Sending..." : "Submit"}
             </button>
 
             {status && (
               <p
-                className={`mt-2 ${
-                  status.type === "success"
-                    ? "text-green-600"
-                    : "text-red-600"
+                className={`text-sm ${
+                  status.type === "success" ? "text-green-700" : "text-red-600"
                 }`}
               >
                 {status.msg}
               </p>
             )}
           </form>
-
-    
-          <div className="flex flex-col justify-center space-y-4 text-black text-xl">
-            <p className="text-2xl">📍 Nairobi, Kenya</p>
-            <p className="text-2xl">📧 contact@pawradise.com</p>
-            <p className="text-2xl">📞 +254 700 123 456</p>
-          </div>
         </div>
       </div>
     </section>

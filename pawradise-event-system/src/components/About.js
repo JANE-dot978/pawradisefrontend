@@ -1,392 +1,154 @@
+import heroImage from "../components/black women with dogs.jpg";
+import founderImage from "../components/ceo.jpg";
+import teamImage1 from "../components/gallery6.jpg";
+import teamImage2 from "../components/eventc2.jpg";
+import teamImage3 from "../components/gallery5.jpg";
 
-import { Link } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import image from "../components/many dogs.jpg"
-import image2 from "../components/dogwalks.webp";
-import image3 from "../components/founder.jpg";
-import image4 from "../components/eventc.jpg";
-import image5 from "../components/eventc2.jpg";
-import image6 from "../components/dogtoys.jpg";
-import image7 from "../components/dogsplaying.jpg";
-import image8 from "../components/doggrooming.png";
-import image9 from "../components/behind.jpg";
-import image10 from "../components/dogsetup.jpg";
-import image11 from "../components/dogoos.webp";
+const team = [
+  {
+    name: "Sarah Kimani",
+    role: "Event Coordinator",
+    image: teamImage1,
+  },
+  {
+    name: "Nelson Ndung'u",
+    role: "Dog Trainer",
+    image: teamImage2,
+  },
+  {
+    name: "Amara Atieno",
+    role: "Community Lead",
+    image: teamImage3,
+  },
+];
 
+const About = () => {
+  return (
+    <div className="bg-[#f7ecd0]">
+      {/* Our Story */}
+      <section className="relative overflow-hidden pt-32 pb-16 px-6 md:px-16">
+        <div className="absolute top-8 left-6 text-4xl text-orange-300 opacity-60 rotate-12 select-none">
+          🐾
+        </div>
 
-const About = ()=>{
-    return (
-        <div>
-<section className="bg-pink-50 from-pink-100 via-white to-pink-100 pt-32 pb-16 px-6">
-  <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-    
-  
-    <div className="text-center md:text-left">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-black mb-4">
-        Welcome to Pawradise 🐾
-      </h1>
-      <p className="text-3xl text-gray-600 mb-6">
-        We bring dogs and their humans together through fun, safe, and exciting events. Whether it’s playtime, training, or meetups, Pawradise is where every pup belongs!
-      </p>
-      <Link
-        to="/events"
-        className="inline-block bg-pink-600 hover:bg-pink-400 text-white font-semibold py-3 px-6 rounded-full shadow transition duration-300"
-      >
-        See Upcoming Events
-      </Link>
-    </div>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
+          <div className="hidden md:block md:col-span-1">
+            <ul className="space-y-3 mt-24 text-gray-800 font-medium">
+              <li><a href="#our-story" className="hover:text-orange-500 transition">Our Story</a></li>
+              <li><a href="#founder" className="hover:text-orange-500 transition">Meet the Founder</a></li>
+              <li><a href="#team" className="hover:text-orange-500 transition">The Team</a></li>
+            </ul>
+          </div>
 
-  
-    <div className="flex justify-center">
-      <img
-        src= {image}
-        alt="Happy dog at an event"
-        className="rounded-xl shadow-lg max-h-[600px] object-cover"
-      />
-    </div>
-
-  </div>
-</section>
-
-<section className="bg-pink-50 py-20 px-6">
-  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    
-  
-    <div className="flex justify-center">
-      <img
-        src={image2}
-        alt="Dogs playing happily"
-        className="rounded-xl shadow-lg object-cover w-full h-[400px] md:h-[500px] lg:h-[600px]"
-      />
-    </div>
-
-
-    <div>
-      <h2 className="text-4xl md:text-7xl font-bold text-black mb-6 text-center md:text-left">Our Story 🐶❤️</h2>
-      <p className="text-lg md:text-xl text-black leading-relaxed mb-6">
-        Pawradise was born out of a simple yet powerful dream — to create a place where dogs aren't just pets, but celebrated members of the family.
-        <br /><br />
-        Our journey began with a single community dog walk. What started as a small gathering quickly grew into a vibrant community of dog lovers who shared more than just leashes and treats — we shared stories, laughter, and unconditional love.
-        <br /><br />
-        We believe every dog deserves joy, safety, and belonging. From playful puppy meetups to heartwarming adoption drives and thoughtful training sessions, every event is crafted with care and compassion.
-        <br /><br />
-        Pawradise is more than just events — it's a movement. A place where tails wag freely, friendships bloom, and humans learn to see the world through their dog’s eyes: full of wonder, loyalty, and love.
-      </p>
-
-      {/* Founder’s Note */}
-      <div className="bg-white border-l-4 border-pink-400 p-4 shadow rounded">
-        <p className="italic text-gray-600">
-          "When I started Pawradise, I just wanted a place where my dog could play without fear and meet other pups. But what I found was so much more — a family of people who care deeply for their furry friends and each other. Thank you for being part of this journey."
-        </p>
-        <p className="mt-2 font-semibold text-pink-600">— Founder, Pawradise</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section className="bg-pink-50 py-20 px-6">
-  <div className="max-w-7xl mx-auto text-center">
-    <h2 className="text-4xl md:text-6xl font-bold text-black mb-4">What We Do</h2>
-    <p className="text-3xl text-black max-w-4xl mx-auto mb-12">
-      At Pawradise, we believe every dog deserves joy, adventure, and love. From exciting events to bonding activities, here's what we do to make tails wag!
-    </p>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-      
-      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
-        <div className="text-5xl mb-4">🐕</div>
-        <h3 className="text-3xl font-semibold mb-2 text-black">Dog Meetups</h3>
-        <p className="text-black text-2xl">Fun social gatherings where dogs (and their humans!) meet, play, and make new furry friends.</p>
-      </div>
-
-      
-      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
-        <div className="text-5xl mb-4">🎓</div>
-        <h3 className="text-3xl font-semibold mb-2 text-black">Training Sessions</h3>
-        <p className="text-black text-2xl">Group classes designed to build trust, improve behavior, and strengthen your bond.</p>
-      </div>
-
-      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
-        <div className="text-5xl mb-4">🎉</div>
-        <h3 className="text-3xl font-semibold mb-2 text-black">Themed Events</h3>
-        <p className="text-black text-2xl">From doggy birthdays to costume parades, we celebrate every moment with style and joy.</p>
-      </div>
-
-      <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
-        <div className="text-5xl mb-4">🏞️</div>
-        <h3 className="text-3xl font-semibold mb-2 text-black">Outdoor Adventures</h3>
-        <p className="text-black text-2xl">Join us for walks, hikes, and exciting outdoor explorations tailored to active pups.</p>
-      </div>
-    </div>
-
-    {/* CTA Button */}
-    <div className="mt-12">
-      <Link
-        to="/events"
-        className="inline-block bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow transition duration-300"
-      >
-        Explore Upcoming Events
-      </Link>
-    </div>
-  </div>
-</section>
-
-<section className="bg-pink-50 py-16 px-6">
-  <div className="max-w-7xl mx-auto text-center">
-    <h2 className="text-5xl font-bold text-gray-800 mb-4">Meet the Team 🐶</h2>
-    <p className="text-3xl text-gray-600 mb-10">
-      Our team is made up of passionate dog lovers dedicated to creating joyful experiences for pets and their people.
-    </p>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      {/* Team Member 1 */}
-      <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-        <img
-          src={image3}
-          alt="Founder"
-          className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
-        />
-        <h3 className="text-3xl font-semibold text-gray-800">Jane Wanjiku</h3>
-        <p className="text-pink-600 font-medium text-2xl">Founder & Dog Mom</p>
-        <p className="text-gray-600 mt-2 text-2xl">
-          "Bringing dogs and people together is my life's joy."
-        </p>
-      </div>
-
-      <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-        <img
-          src={image4}
-          alt="Event Planner"
-          className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
-        />
-        <h3 className="text-3xl font-semibold text-gray-800">Nelson Ndung'u</h3>
-        <p className="text-pink-600 font-medium text-2xl">Event Coordinator</p>
-        <p className="text-gray-600 mt-2 text-2xl">
-          "Every tail wag and happy bark is worth the work."
-        </p>
-      </div>
-
-    
-      <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-        <img
-          src={image5}
-          alt="Trainer"
-          className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
-        />
-        <h3 className="text-3xl font-semibold text-gray-800">Azaan Kiarie</h3>
-        <p className="text-pink-600 font-medium text-2xl">Dog Trainer</p>
-        <p className="text-gray-600 mt-2 text-2xl">
-          "I help pups find confidence and fun through training!"
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section className="relative py-20 px-6 bg-pink-50">
-  {/* Content wrapper */}
-  <div className="relative z-10 max-w-7xl mx-auto text-center mb-12">
-    <h2 className="text-5xl font-bold text-gray-800">Why Pawradise is Different 🐶</h2>
-    <p className="text-gray-600 mt-4 text-3xl">
-      At Pawradise, we go beyond events we create unforgettable moments between dogs and their humans 🐾❤️
-    </p>
-  </div>
-
-
-  <div className="relative z-10 grid sm:grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-    {/* Card 1 */}
-    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-      <h3 className="text-2xl font-semibold text-pink-600 mb-3">🎯 Tailored Events for Every Pup</h3>
-      <p className="text-gray-600 text-2xl">
-        From shy pups to energetic furballs, we design events that suit every dog’s personality and needs.
-      </p>
-    </div>
-
-  
-    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-      <h3 className="text-2xl font-semibold text-pink-600 mb-3">🛡️ Certified & Safe Spaces</h3>
-      <p className="text-gray-600 text-2xl">
-        Our venues are clean, secure, and supervised by trained staff to ensure total comfort and security.
-      </p>
-    </div>
-
-  
-    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-      <h3 className="text-3xl font-semibold text-pink-600 mb-3">👩‍⚕️ Trained Handlers On Site</h3>
-      <p className="text-gray-600 text-2xl">
-        Every dog deserves love and care — our handlers ensure every tail keeps wagging safely.
-      </p>
-    </div>
-
-    {/* Card 4 */}
-    <div className="bg-white w-full md:w-[90%] mx-auto p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-      <h3 className="text-2xl font-semibold text-pink-600 mb-3">🎁 Surprise Treats & Giveaways</h3>
-      <p className="text-gray-600 text-2xl">
-        Every event features pawsome goodies, treats, and surprises that make tails wag and hearts melt!
-      </p>
-    </div>
-  </div>
-
-  {/* Quote */}
-  <div className="relative z-10 mt-16 text-center">
-    <blockquote className="italic text-2xl text-gray-700 max-w-2xl mx-auto">
-      “Dogs are not our whole life, but they make our lives whole.” Roger Caras 🐾
-    </blockquote>
-  </div>
-</section>
-<section className="relative py-20 px-6 bg-pink-50">
-  <div className="relative z-10 max-w-7xl mx-auto text-center mb-12">
-    <h2 className="text-5xl font-bold text-black">🐾 Behind the Scenes at Pawradise</h2>
-    <p className="text-gray-600 mt-4 text-3xl">
-      Peek into the pawsitive chaos, joy, and pure doggy delight that happens when the cameras aren’t rolling!
-    </p>
-  </div>
-
-  {/* Gallery grid */}
-  <div className="relative z-10 grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-    <img
-      src={image11}
-      alt="Behind the scenes 1"
-      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
-    />
-    <img
-      src={image6}
-      alt="Behind the scenes 2"
-      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
-    />
-    <img
-      src={image7}
-      alt="Behind the scenes 3"
-      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
-    />
-    <img
-      src={image8}
-      alt="Behind the scenes 4"
-      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
-    />
-    <img
-      src={image9}
-      alt="Behind the scenes 5"
-      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
-    />
-    <img
-      src={image10}
-      alt="Behind the scenes 6"
-      className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
-    />
-  </div>
-
-  {/* CTA */}
-  <div className="relative z-10 mt-12 text-center">
-    <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300">
-      View Full Gallery 🐶📸
-    </button>
-  </div>
-</section>
-
-<section className="py-16 bg-pink-50">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-5xl font-bold text-center mb-12">What Our Clients Say 🐾</h2>
-
-    <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
-      {/* Testimonial 1 */}
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <p className="text-gray-700 mb-4 text-2xl">
-          "Pawradise made our furry friend's birthday unforgettable! The team went above and beyond to make it special."
-        </p>
-        <div className="flex items-center">
-          <img
-            className="w-12 h-12 rounded-full mr-4"
-            src="https://randomuser.me/api/portraits/women/44.jpg"
-            alt="Client"
-          />
-          <div>
-            <p className="font-semibold">Sarah M.</p>
-            <p className="text-sm text-gray-500">Dog Mom</p>
+          <div id="our-story" className="md:col-span-3">
+            <h1 className="font-heading text-5xl text-black mb-3">Our Story</h1>
+            <div className="w-16 h-1 bg-orange-500 mb-4"></div>
+            <h2 className="font-heading text-2xl md:text-3xl text-orange-500 mb-6">
+              Built by dog people, for dog people.
+            </h2>
+            <p className="text-gray-700 text-lg leading-relaxed mb-4">
+              Pawradise was born out of a simple yet powerful dream — to create a place where dogs aren't just pets, but celebrated members of the family.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mb-4">
+              Our journey began with a single community dog walk. What started as a small gathering quickly grew into a vibrant community of dog lovers who shared more than just leashes and treats — we shared stories, laughter, and unconditional love. We believe every dog deserves joy, safety, and belonging. From playful puppy meetups to heartwarming adoption drives and thoughtful training sessions, every event is crafted with care and compassion.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Pawradise is more than just events — it's a movement. A place where tails wag freely, friendships bloom, and humans learn to see the world through their dog's eyes: full of wonder, loyalty, and love.
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* Testimonial 2 */}
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <p className="text-gray-700 mb-4 text-2xl">
-          "From decorations to treats, everything was perfect! Highly recommend Pawradise for pet events."
-        </p>
-        <div className="flex items-center">
+        <div className="max-w-6xl mx-auto mt-12">
           <img
-            className="w-12 h-12 rounded-full mr-4"
-            src="https://randomuser.me/api/portraits/men/46.jpg"
-            alt="Client"
+            src={heroImage}
+            alt="Pawradise community members with their dogs at an event"
+            className="w-full h-[420px] object-cover rounded-2xl shadow-lg"
           />
-          <div>
-            <p className="font-semibold">James K.</p>
-            <p className="text-sm text-gray-500">Proud Husky Owner</p>
+        </div>
+      </section>
+
+      {/* Meet the Founder */}
+      <section id="founder" className="py-16 px-6 md:px-16">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="relative px-4">
+            <span className="text-7xl text-orange-400 font-serif leading-none select-none">“</span>
+            <blockquote className="text-lg md:text-xl text-black font-medium leading-relaxed -mt-6">
+              When I started Pawradise, I just wanted a place where my dog could play without fear and meet other pups. But what I found was so much more — a family of people who care deeply for their furry friends and each other. Thank you for being part of this journey.
+            </blockquote>
+            <div className="flex justify-end">
+              <span className="text-7xl text-orange-400 font-serif leading-none select-none">”</span>
+            </div>
+            <p className="text-center font-semibold text-black -mt-4">Jane Gathu - Founder</p>
+          </div>
+
+          <div className="flex justify-center">
+            <img
+              src={founderImage}
+              alt="Jane Gathu, Founder of Pawradise"
+              className="rounded-2xl shadow-lg w-full max-w-md object-cover"
+            />
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Testimonial 3 */}
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <p className="text-gray-700 mb-4 text-2xl">
-          "The staff truly loves animals and it shows in every detail. My cat had the best time!"
-        </p>
-        <div className="flex items-center">
-          <img
-            className="w-12 h-12 rounded-full mr-4"
-            src="https://randomuser.me/api/portraits/women/65.jpg"
-            alt="Client"
-          />
-          <div>
-            <p className="font-semibold">Lydia P.</p>
-            <p className="text-sm text-gray-500">paw Enthusiast</p>
+      {/* The Team */}
+      <section id="team" className="py-16 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">The Team</h2>
+          <div className="w-16 h-1 bg-orange-500 mb-6"></div>
+          <p className="text-gray-700 text-lg max-w-2xl mb-10">
+            Our team is made up of passionate dog lovers dedicated to creating joyful experiences for pets and their people.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {team.map((member) => (
+              <div
+                key={member.name}
+                className="relative rounded-2xl overflow-hidden shadow-lg h-80 group"
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-bold text-lg">{member.name}</p>
+                  <p className="text-sm">{member.role}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Join Community CTA */}
+      <section className="bg-white py-16 px-6 text-center">
+        <h2 className="font-heading text-3xl md:text-4xl text-orange-500 mb-4">
+          Join Our Pawradise Community
+        </h2>
+        <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-lg">
+          Be part of a vibrant community of dog lovers! Get the latest updates on upcoming events, special offers, and heartwarming paw stories delivered right to your inbox.
+        </p>
+        <form
+          className="flex flex-col sm:flex-row justify-center gap-3 max-w-lg mx-auto"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 w-full"
+          />
+          <button
+            type="submit"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition"
+          >
+            Subscribe
+          </button>
+        </form>
+      </section>
     </div>
-  </div>
-</section>
-
-
-<section className="py-12 bg-pink-50 text-center">
-  <h2 className="text-5xl font-bold text-black mb-4">Join Our Pawradise Community 🐾</h2>
-  <p className="text-gray-600 max-w-2xl mx-auto mb-6 text-2xl">
-    Be part of a vibrant community of dog lovers! Get the latest updates on upcoming events, 
-    special offers, and heartwarming paw stories delivered right to your inbox.
-  </p>
-  <form className="flex flex-col sm:flex-row justify-center gap-4 max-w-lg mx-auto">
-    <input
-      type="email"
-      placeholder="Enter your email"
-      className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 w-full sm:w-auto"
-    />
-    <button
-      type="submit"
-      className="bg-pink-600 hover:bg-pink-800 text-white px-6 py-2 rounded-lg font-semibold"
-    >
-      Subscribe
-    </button>
-  </form>
-  <p className="mt-6 text-gray-500 text-2xl">Follow us on social media for daily doggy fun 🐶:</p>
-  <div className="flex justify-center gap-6 mt-4">
-    <a href="https://facebook.com" className="text-blue-500 hover:text-blue-700 text-2xl">
-        <FaFacebook />
-    </a>
-    <a href="https://instagram.com" className="text-pink-500 hover:text-pink-700 text-2xl">
-        <FaInstagram />
-    </a>
-    <a href="https://twitter.com" className="text-sky-400 hover:text-sky-600 text-2xl">
-        <FaTwitter />
-    </a>
-</div>
-</section>
-
-
-
-
-
-</div>
-
-    )
+  );
 };
+
 export default About;
