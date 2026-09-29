@@ -1,7 +1,7 @@
 
 // import { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
-// import logo from '../components/logo.jpg';
+// import logo from '../assets/logo.jpg';
 // import { Menu, X } from 'lucide-react';
 
 // const Navbar = () => {
@@ -133,7 +133,7 @@
 
 // import { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
-// import logo from "../components/logo.jpg";
+// import logo from "../assets/logo.jpg";
 // import Login from "../components/Login.js";
 // import Signup from "./Signup.js"; // ✅ Capitalized
 
@@ -281,7 +281,7 @@ const Navbar = () => {
     } else if (userData.role === "employee") {
       navigate("/employee");
     } else {
-      navigate("/events");
+      navigate("/dashboard");
     }
   };
 
@@ -290,11 +290,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 bg-[#f7ecd0] shadow-sm">
+    <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 bg-[#F6E8C6] shadow-sm">
       <div className="flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <PawPrint size={28} className="text-orange-500" />
+          <PawPrint size={28} className="text-[#F7700A]" />
           <span className="font-heading text-2xl text-black">Pawradise</span>
         </Link>
 
@@ -308,7 +308,7 @@ const Navbar = () => {
                 to={link.to}
                 className={`font-semibold transition pb-1 border-b-2 ${
                   isActive
-                    ? "text-orange-500 border-orange-500"
+                    ? "text-[#F7700A] border-[#F7700A]"
                     : "text-black border-transparent hover:text-orange-500"
                 }`}
               >
@@ -341,7 +341,19 @@ const Navbar = () => {
               </button>
               <div className="absolute right-0 hidden group-hover:block bg-white mt-2 rounded-lg shadow-lg p-4 min-w-48">
                 <p className="text-gray-800 font-medium">Welcome, {user.name}</p>
-                <p className="text-sm text-gray-500">Role: {user.role}</p>
+                <p className="text-sm text-gray-500 mb-2">Role: {user.role}</p>
+                <Link
+                  to={
+                    user.role === "admin"
+                      ? "/admin"
+                      : user.role === "employee"
+                      ? "/employee"
+                      : "/dashboard"
+                  }
+                  className="block text-gray-800 hover:text-orange-500 transition"
+                >
+                  My Dashboard
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="text-red-500 mt-2 hover:text-red-700"
@@ -353,7 +365,7 @@ const Navbar = () => {
           )}
           <Link
             to="/events"
-            className="inline-flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-5 rounded-full shadow transition"
+            className="inline-flex items-center gap-1 bg-[#F7700A] hover:bg-orange-600 text-white font-semibold py-2 px-5 rounded-full shadow transition"
           >
             Explore Events <ArrowRight size={16} />
           </Link>
@@ -380,7 +392,7 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 className={`block py-3 font-semibold text-lg transition ${
-                  isActive ? "text-orange-500" : "text-black hover:text-orange-500"
+                  isActive ? "text-[#F7700A]" : "text-black hover:text-orange-500"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -392,7 +404,7 @@ const Navbar = () => {
           <Link
             to="/events"
             onClick={() => setIsMenuOpen(false)}
-            className="mt-3 inline-flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-5 rounded-full shadow transition"
+            className="mt-3 inline-flex items-center gap-1 bg-[#F7700A] hover:bg-orange-600 text-white font-semibold py-2 px-5 rounded-full shadow transition"
           >
             Explore Events <ArrowRight size={16} />
           </Link>
@@ -424,6 +436,19 @@ const Navbar = () => {
                 <p className="font-semibold">Welcome, {user.name}</p>
                 <p className="text-sm text-gray-500">Role: {user.role}</p>
               </div>
+              <Link
+                to={
+                  user.role === "admin"
+                    ? "/admin"
+                    : user.role === "employee"
+                    ? "/employee"
+                    : "/dashboard"
+                }
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-2 text-black font-semibold text-lg hover:text-orange-500 transition"
+              >
+                My Dashboard
+              </Link>
               <button
                 onClick={() => {
                   handleLogout();

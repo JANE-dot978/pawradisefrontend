@@ -692,7 +692,7 @@ const Login = ({ onClose, onLoginSuccess }) => { // Changed prop name
       } else if (role === "employee") {
         navigate("/employee");
       } else {
-        navigate("/events");
+        navigate("/dashboard");
       }
     } catch (err) {
       console.error("Login error:", err);

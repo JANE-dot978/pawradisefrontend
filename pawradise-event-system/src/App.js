@@ -250,6 +250,7 @@ import Events from "./components/Events";
 import Contact from "./components/Contact";
 import AdminDashboard from "./components/AdminDashboard";
 import EmployeeDashboard from "./components/EmployeeDashboard";
+import UserDashboard from "./components/UserDashboard";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Footer from "./components/Footer";
@@ -292,6 +293,10 @@ function App() {
     return isAuthenticated && (userRole === "employee" || userRole === "admin") ? children : <Navigate to="/login" replace />;
   };
 
+  const ProtectedUserRoute = ({ children }) => {
+    return isAuthenticated ? children : <Navigate to="/login" replace />;
+  };
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -306,6 +311,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/admin" element={<ProtectedAdminRoute><AdminDashboard /></ProtectedAdminRoute>} />
             <Route path="/employee" element={<ProtectedEmployeeRoute><EmployeeDashboard /></ProtectedEmployeeRoute>} />
+            <Route path="/dashboard" element={<ProtectedUserRoute><UserDashboard /></ProtectedUserRoute>} />
             <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

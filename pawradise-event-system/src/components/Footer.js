@@ -6,7 +6,7 @@ import { PawPrint, Phone, Mail, MapPin } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="px-6 pt-12 pb-6 md:px-16 lg:px-24 w-full text-white bg-black">
-      <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4">
+      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-2 mb-4">
             <PawPrint size={26} className="text-white" />

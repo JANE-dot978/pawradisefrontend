@@ -1,8 +1,8 @@
-import heroImage from "../components/black women with dogs.jpg";
-import founderImage from "../components/ceo.jpg";
-import teamImage1 from "../components/gallery6.jpg";
-import teamImage2 from "../components/eventc2.jpg";
-import teamImage3 from "../components/gallery5.jpg";
+import heroImage from "../assets/black women with dogs.jpg";
+import founderImage from "../assets/ceo.jpg";
+import teamImage1 from "../assets/gallery6.jpg";
+import teamImage2 from "../assets/eventc2.jpg";
+import teamImage3 from "../assets/gallery5.jpg";
 
 const team = [
   {

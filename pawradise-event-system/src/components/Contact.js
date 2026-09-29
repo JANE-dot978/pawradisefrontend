@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-import backgroundImage from "../components/poodle-torn-paper.png";
+import backgroundImage from "../assets/poodle-torn-paper.png";
 
 const contactDetails = [
   {

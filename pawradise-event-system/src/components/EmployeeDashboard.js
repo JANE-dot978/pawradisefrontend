@@ -353,6 +353,7 @@
 // }
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Profile from "./Profile";
 
 export default function EmployeeDashboard() {
   const [view, setView] = useState("create");
@@ -531,6 +532,16 @@ export default function EmployeeDashboard() {
           </li>
           <li>
             <button
+              onClick={() => setView("profile")}
+              className={`w-full text-left ${
+                view === "profile" ? "text-blue-400" : ""
+              }`}
+            >
+              👤 Profile
+            </button>
+          </li>
+          <li>
+            <button
               onClick={handleLogout}
               className="w-full text-left text-red-400 hover:text-red-600"
             >
@@ -543,7 +554,7 @@ export default function EmployeeDashboard() {
       {/* Main Content */}
       <div className="flex-1 p-8 bg-gray-100 overflow-y-auto mt-6">
         <h1 className="text-2xl font-bold mb-6">
-          👋 Hello Employee, Welcome to Your Dashboard
+           Hello Employee, Welcome to Your Dashboard
         </h1>
 
         {/* ✅ Create Event */}
@@ -621,7 +632,7 @@ export default function EmployeeDashboard() {
           </form>
         )}
 
-        {/* ✅ Edit Event */}
+        {/* Edit Event */}
         {editEvent && (
           <form
             onSubmit={handleUpdate}
@@ -728,6 +739,13 @@ export default function EmployeeDashboard() {
                 ))}
               </div>
             )}
+          </div>
+        )}
+
+        {view === "profile" && (
+          <div>
+            <h2 className="text-2xl font-bold mb-6">Profile</h2>
+            <Profile />
           </div>
         )}
 

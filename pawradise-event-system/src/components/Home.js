@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Search,
-  CalendarCheck,
-  PawPrint,
   Users,
   ShieldCheck,
   Compass,
@@ -13,34 +10,38 @@ import {
   Info,
 } from "lucide-react";
 
-import heroImage from "../components/dogwalks.webp";
-import whyChooseImage from "../components/womandog.jpg";
-import ctaImage from "../components/gallery15.jpg";
+import iconSearch from "../assets/icon-search.png";
+import iconCalendar from "../assets/icon-calendar.png";
+import iconPersonDog from "../assets/icon-person-dog.png";
 
-import pic1 from "../components/pic1.webp";
-import pic2 from "../components/pic2.jpg";
-import pic3 from "../components/pic3.jpg";
-import pic4 from "../components/pic4.jpeg";
+import heroImage from "../assets/Hero-Image.jpeg";
+import whyChooseImage from "../assets/womandog.jpg";
+import ctaImage from "../assets/gallery15.jpg";
 
-import avatar1 from "../components/mandog.jpg";
-import avatar2 from "../components/gallery12.jpg";
-import avatar3 from "../components/shiku.jpg";
+import pic1 from "../assets/pic1.webp";
+import pic2 from "../assets/pic2.jpg";
+import pic3 from "../assets/pic3.jpg";
+import pic4 from "../assets/pic4.jpeg";
 
-import Imagea from "../components/gallery1.jpg";
-import Imageb from "../components/gallery2.jpg";
-import Imagec from "../components/gallery3.jpg";
-import Imaged from "../components/gallery4.jpg";
-import Imagee from "../components/gallery5.jpg";
-import Imagef from "../components/gallery6.jpg";
-import Imageg from "../components/gallery7.jpg";
-import Imageh from "../components/gallery 8.jpg";
-import Imagei from "../components/gallery9.jpg";
-import Imagej from "../components/galley10.jpeg";
-import Imagek from "../components/gallery11.jpeg";
-import Imagel from "../components/gallery13.jpg";
-import Imagem from "../components/gallery12.jpg";
-import Imagen from "../components/gallery14.jpg";
-import Imageo from "../components/gallery15.jpg";
+import avatar1 from "../assets/mandog.jpg";
+import avatar2 from "../assets/gallery12.jpg";
+import avatar3 from "../assets/shiku.jpg";
+
+import Imagea from "../assets/dog swimming day.webp";
+import Imageb from "../assets/gallery2.jpg";
+import Imagec from "../assets/gallery3.jpg";
+import Imaged from "../assets/mandogsss.webp";
+import Imagee from "../assets/gallery5.jpg";
+import Imagef from "../assets/gallery6.jpg";
+import Imageg from "../assets/gallery7.jpg";
+import Imageh from "../assets/gallery 8.jpg";
+import Imagei from "../assets/gallery9.jpg";
+import Imagej from "../assets/galley10.jpeg";
+import Imagek from "../assets/gallery11.jpeg";
+import Imagel from "../assets/dogoos.webp";
+import Imagem from "../assets/gallery12.jpg";
+import Imagen from "../assets/gallery14.jpg";
+import Imageo from "../assets/gallery15.jpg";
 
 const NEXT_EVENT_DATE = new Date("2026-09-12T09:00:00");
 
@@ -82,7 +83,7 @@ const events = [
 const steps = [
   {
     step: "01",
-    icon: Search,
+    icon: iconSearch,
     title: "Discover",
     subtitle: "Find Your Adventure",
     description:
@@ -90,7 +91,7 @@ const steps = [
   },
   {
     step: "02",
-    icon: CalendarCheck,
+    icon: iconCalendar,
     title: "Book",
     subtitle: "Save your spot",
     description:
@@ -98,7 +99,7 @@ const steps = [
   },
   {
     step: "03",
-    icon: PawPrint,
+    icon: iconPersonDog,
     title: "Enjoy",
     subtitle: "Make Memories Together",
     description:
@@ -200,53 +201,53 @@ const Home = () => {
   return (
     <div className="flex flex-col">
       {/* HERO */}
-      <section className="relative min-h-[600px] flex items-center px-6 md:px-16 py-24">
+      <section className="relative min-h-[750px] flex items-center px-6 md:px-16 py-24">
         <img
           src={heroImage}
           alt="Dogs and their humans enjoying an outdoor event"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/0" />
 
         <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-10 items-center">
           <div className="md:col-span-2 text-white">
-            <span className="inline-flex items-center gap-2 bg-white/90 text-gray-800 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+            <span className="inline-flex items-center gap-2 bg-white/90 text-gray-800 text-sm font-semibold px-9 py-1.5 rounded-full mb-6">
               📅 12 SEP 2026 · NAIROBI
             </span>
-            <h1 className="font-heading text-5xl md:text-6xl text-orange-400 mb-4">
+            <h1 className="font-heading text-4xl md:text-6xl text-[#F7700A] mb-4">
               Dog's Park Day
             </h1>
-            <p className="text-lg md:text-xl max-w-xl mb-8 text-white/90">
+            <p className="text-lg max-w-xl mb-8 text-white/90">
               A day of play, socializing and outdoor fun for dogs and their humans.
             </p>
             <div className="flex flex-wrap gap-4 mb-6">
               <Link
                 to="/signup"
-                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full shadow transition"
+                className="inline-flex items-center gap-2 bg-[#F7700A] hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full shadow transition"
               >
-                <Ticket size={18} /> Book Your Spot
+                <Ticket size={20} /> Book Your Spot
               </Link>
               <Link
                 to="/events"
                 className="inline-flex items-center gap-2 border-2 border-white text-white font-semibold py-3 px-6 rounded-full hover:bg-white hover:text-gray-900 transition"
               >
-                <Info size={18} /> View Details
+                <Info size={28} /> View Details
               </Link>
             </div>
-            <p className="text-sm text-white/80">All breeds welcome • Safe play zones</p>
+            <p className="text-sm text-white">All breeds welcome • Safe play zones</p>
           </div>
 
-          <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-white">
-            <p className="text-xs uppercase tracking-wide text-white/80 mb-3 text-center">
+          <div className="bg-white/50 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-white">
+            <p className="text-sm uppercase tracking-wide text-black mb-3">
               Next adventure starts in
             </p>
-            <div className="grid grid-cols-4 gap-2 text-center">
+            <div className="grid grid-cols-4 gap-2">
               {countdownUnits.map((unit) => (
                 <div key={unit.label}>
-                  <p className="text-2xl md:text-3xl font-heading text-orange-400">
+                  <p className="text-2xl md:text-3xl font-heading text-[#F7700A]">
                     {String(unit.value).padStart(2, "0")}
                   </p>
-                  <p className="text-[10px] uppercase text-white/70">{unit.label}</p>
+                  <p className="text-[10px] uppercase text-black">{unit.label}</p>
                 </div>
               ))}
             </div>
@@ -259,17 +260,17 @@ const Home = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
             <div>
-              <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">
+              <h2 className="font-heading text-4xl md:text-6xl text-black mb-2">
                 Upcoming Events
               </h2>
-              <div className="w-16 h-1 bg-orange-500 mb-2"></div>
-              <p className="text-gray-600">More Adventures await</p>
+              <div className="w-16 h-1 bg-[#F7700A] mb-2"></div>
+              <p className="text-gray-600 text-lg">More Adventures await</p>
             </div>
             <Link
               to="/events"
-              className="inline-flex items-center gap-1 text-orange-500 font-semibold hover:text-orange-600 transition"
+              className="inline-flex items-center gap-1 text-[#F7700A] font-semibold hover:text-orange-600 transition text-sm"
             >
-              Explore All Events <ArrowRight size={18} />
+              Explore All Events <ArrowRight size={25} />
             </Link>
           </div>
 
@@ -277,7 +278,7 @@ const Home = () => {
             {events.map((event) => (
               <div
                 key={event.title}
-                className="bg-[#f7ecd0] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition"
+                className="bg-[#F6E8C6] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition"
               >
                 <img
                   src={event.image}
@@ -289,10 +290,10 @@ const Home = () => {
                   <p className="text-gray-700 text-sm mb-4">{event.description}</p>
                   <p className="text-sm font-semibold text-black">{event.date}</p>
                   <p className="text-sm text-gray-600 mb-1">{event.location}</p>
-                  <p className="text-sm font-semibold text-orange-600 mb-4">{event.price}</p>
+                  <p className="text-sm font-semibold text-[#F7700A] mb-4">{event.price}</p>
                   <Link
                     to="/signup"
-                    className="inline-flex items-center gap-1 border border-orange-400 text-orange-600 hover:bg-orange-500 hover:text-white transition rounded-full px-4 py-1.5 text-sm font-medium"
+                    className="inline-flex items-center gap-1 border border-[#F7700A] text-[#F7700A] hover:bg-orange-500 hover:text-white transition rounded-full px-4 py-1.5 text-sm font-medium"
                   >
                     View Event <ArrowRight size={14} />
                   </Link>
@@ -304,39 +305,38 @@ const Home = () => {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="bg-[#f7ecd0] py-20 px-6 md:px-16">
+      <section className="bg-[#F6E8C6] py-16 px-6 md:px-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">How It Works</h2>
-          <div className="w-16 h-1 bg-orange-500 mb-3"></div>
-          <p className="text-gray-700 mb-12">From Discovery to Tail-Wagging Adventures</p>
+          <h2 className="font-heading text-4xl md:text-6xl text-black mb-2">How It Works</h2>
+          <div className="w-16 h-1 bg-[#F7700A] mb-3"></div>
+          <p className="text-gray-700 mb-12 text-lg">From Discovery to Tail-Wagging Adventures</p>
 
-          <div className="space-y-12">
+          <div className="relative space-y-16">
+            <div className="hidden md:block absolute top-8 bottom-8 left-1/2 -translate-x-1/2 border-l-2 border-dotted border-[#F7700A] z-0"></div>
+
             {steps.map((item, index) => {
-              const Icon = item.icon;
               const reversed = index % 2 === 1;
               return (
                 <div
                   key={item.step}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${
+                  className={`relative z-10 flex flex-col md:flex-row items-center gap-8 ${
                     reversed ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  <div className={`flex-1 ${reversed ? "md:text-right" : ""}`}>
-                    <h3 className="font-heading text-2xl text-black mb-1">{item.title}</h3>
-                    <p className="text-orange-600 font-semibold mb-2">{item.subtitle}</p>
-                    <p className="text-gray-700 max-w-sm md:ml-auto">
-                      {reversed ? item.description : item.description}
-                    </p>
+                  <div className="flex-1 text-left">
+                    <h3 className="font-heading text-4xl text-black mb-1">{item.title}</h3>
+                    <p className="text-[#F7700A] font-semibold mb-2 text-lg">{item.subtitle}</p>
+                    <p className="text-gray-700 max-w-sm text-1xl">{item.description}</p>
                   </div>
 
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center bg-[#F6E8C6] px-2">
                     <span className="text-xs uppercase text-gray-500">Step</span>
-                    <span className="font-heading text-3xl text-orange-500">{item.step}</span>
+                    <span className="font-heading text-3xl text-black">{item.step}</span>
                   </div>
 
                   <div className="flex-1 flex justify-center">
-                    <div className="w-28 h-28 rounded-full bg-orange-500 flex items-center justify-center shadow-lg">
-                      <Icon size={44} className="text-white" />
+                    <div className="w-32 h-32 rounded-full bg-[#F7700A] flex items-center justify-center shadow-lg">
+                      <img src={item.icon} alt={item.title} className="w-14 h-14" />
                     </div>
                   </div>
                 </div>
@@ -347,122 +347,187 @@ const Home = () => {
       </section>
 
       {/* WHY CHOOSE PAWRADISE */}
-      <section className="bg-white py-20 px-6 md:px-16">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">
-              Why Choose Pawradise
-            </h2>
-            <div className="w-16 h-1 bg-orange-500 mb-3"></div>
-            <p className="text-gray-600 mb-10">More Adventures. More Wagging. More Memories.</p>
+      <section className="bg-white py-16 px-6 md:px-16 mt-10 mb-20">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-12 md:items-stretch">
+          <div className="flex flex-col md:h-full">
+            <div>
+              <h2 className="font-heading text-4xl md:text-6xl text-black mb-2 whitespace-nowrap">
+                Why Choose Pawradise
+              </h2>
+              <div className="w-16 h-1 bg-[#F7700A] mb-3"></div>
+              <p className="text-gray-600 text-lg">More Adventures. More Wagging. More Memories.</p>
+            </div>
 
-            <h3 className="font-heading text-2xl md:text-3xl text-orange-500 mb-4">
-              Everything Your Dog Loves, In One Place.
-            </h3>
-            <p className="text-gray-700">
-              We built Pawradise because great dog experiences deserve more than a Facebook
-              group and crossed fingers. Here's what makes us different.
-            </p>
+            <div className="md:mt-auto">
+              <h3 className="font-heading  md:text-4xl text-[#F7700A] mb-4">
+                Everything Your Dog Loves, In One Place.
+              </h3>
+              <p className="text-gray-700 text-lg">
+                We built Pawradise because great dog experiences deserve more than a Facebook
+                group and crossed fingers. Here's what makes us different.
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-8">
+          <div className="relative flex items-center justify-center md:justify-start md:mr-40 pb-8 md:pb-0">
             <img
               src={whyChooseImage}
               alt="A Pawradise community member with her dog"
-              className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover shadow-xl shrink-0"
+              className="w-72 h-72 md:w-[34rem] md:h-[34rem] rounded-full object-cover shadow-xl"
             />
-            <div className="flex flex-col gap-4 w-full">
-              {benefits.map((benefit) => {
-                const Icon = benefit.icon;
-                return (
-                  <div
-                    key={benefit.title}
-                    className="flex items-start gap-4 bg-[#f7ecd0] rounded-2xl p-4 shadow-md"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shrink-0">
-                      <Icon size={20} className="text-white" />
-                    </div>
-                    <div>
-                      <p className="font-heading text-black mb-1">{benefit.title}</p>
-                      <p className="text-sm text-gray-700">{benefit.description}</p>
-                    </div>
+
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
+              const badgePositions = [
+                "md:top-[-70px] md:right-[-10px]",
+                "md:top-1/2 md:-translate-y-1/2 md:right-[-170px]",
+                "md:bottom-[-90px] md:right-[-10px]",
+              ];
+              const badgeSizes = ["md:w-56 md:h-56", "md:w-64 md:h-64", "md:w-56 md:h-56"];
+              return (
+                <div
+                  key={benefit.title}
+                  className={`hidden md:flex absolute flex-col items-center justify-center text-center p-6 rounded-full bg-[#F6E8C6] shadow-lg ${badgePositions[index]} ${badgeSizes[index]}`}
+                >
+                  <Icon size={26} className="text-black mb-2" />
+                  <p className="font-heading text-black mb-1">{benefit.title}</p>
+                  <p className="text-xs text-gray-700 leading-snug">{benefit.description}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="grid gap-4 md:hidden">
+            {benefits.map((benefit) => {
+              const Icon = benefit.icon;
+              return (
+                <div
+                  key={benefit.title}
+                  className="flex items-start gap-4 bg-[#F6E8C6] rounded-2xl p-4 shadow-md"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#F7700A] flex items-center justify-center shrink-0">
+                    <Icon size={20} className="text-white" />
                   </div>
-                );
-              })}
-            </div>
+                  <div>
+                    <p className="font-heading text-black mb-1">{benefit.title}</p>
+                    <p className="text-sm text-gray-700">{benefit.description}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-[#f7ecd0] py-20 px-6 md:px-16">
+      <section className="bg-[#F6E8C6] py-16 px-6 md:px-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">Testimonials</h2>
-          <div className="w-16 h-1 bg-orange-500 mb-3"></div>
-          <p className="text-gray-700 mb-12">Good Times. Happy Dogs. Happy Owners.</p>
+          <h2 className="font-heading text-4xl md:text-6xl text-black mb-2">Testimonials</h2>
+          <div className="w-16 h-1 bg-[#F7700A] mb-3"></div>
+          <p className="text-gray-700 mb-2 text-lg">Good Times. Happy Dogs. Happy Owners.</p>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <span className="block text-7xl text-[#F7700A] font-serif leading-none select-none mb-5">
+            &ldquo;
+          </span>
+
+          <div className="grid md:grid-cols-3 gap-8 -mt-6">
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.name}
-                className="bg-white rounded-3xl rounded-tl-none p-6 shadow-md"
+                className="bg-white rounded-[64px] rounded-tl-none p-6"
               >
-                <div className="flex items-center gap-1 text-orange-400 mb-4">
+                <div className="flex items-center gap-1 text-yellow-400 mb-4">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
-                      size={18}
+                      size={28}
                       fill={i < testimonial.rating ? "currentColor" : "none"}
                     />
                   ))}
                 </div>
                 <p className="text-gray-800 mb-6">"{testimonial.quote}"</p>
-                <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="font-heading text-sm text-black">{testimonial.name}</p>
-                    <p className="text-xs text-gray-500">{testimonial.meta}</p>
-                  </div>
-                </div>
+                <div className="w-32 border-t border-gray-300 mb-3"></div>
+                <p className="font-heading text-sm text-black">{testimonial.name}</p>
+                <p className="font-heading text-sm text-black">{testimonial.meta}</p>
               </div>
             ))}
           </div>
+
+          <span className="block text-right text-7xl text-[#F7700A] font-serif leading-none select-none mt-6">
+            &rdquo;
+          </span>
         </div>
       </section>
 
       {/* GALLERY */}
-      <section className="bg-white py-20 px-6 md:px-16">
+      <section className="bg-white py-16 px-6 md:px-16 ">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-heading text-4xl md:text-5xl text-black mb-2">Gallery</h2>
-          <div className="w-16 h-1 bg-orange-500 mb-10"></div>
+          <h2 className="font-heading text-4xl md:text-6xl text-black mb-2">Gallery</h2>
+          <div className="w-16 h-1 bg-[#F7700A] b-3"></div>
+          <p className="text-gray-700 mb-10">Moments Worth Wagging About.</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {galleryImages.map((image) => (
-              <img
-                key={image.src}
-                src={image.src}
-                alt={image.alt}
-                className="h-48 w-full object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
-              />
-            ))}
+          <div className="space-y-4">
+            {Array.from({ length: Math.ceil(galleryImages.length / 7) }).map((_, blockIndex) => {
+              const block = galleryImages.slice(blockIndex * 7, blockIndex * 7 + 7);
+              if (block.length < 7) {
+                return (
+                  <div key={blockIndex} className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {block.map((image) => (
+                      <img
+                        key={image.src}
+                        src={image.src}
+                        alt={image.alt}
+                        className="h-48 w-full object-cover rounded-2xl shadow-md hover:scale-105 transition-transform duration-300"
+                      />
+                    ))}
+                  </div>
+                );
+              }
+              const [big1, small1, small2, tall, big2, small3, small4] = block;
+              const imgClass =
+                "w-full h-full object-cover rounded-2xl shadow-md hover:scale-105 transition-transform duration-300";
+              return (
+                <div key={blockIndex} className="grid grid-cols-1 md:grid-cols-3 gap-4 md:items-stretch">
+                  <div className="flex flex-col gap-4">
+                    <img src={big1.src} alt={big1.alt} className={`${imgClass} aspect-[5/3]`} />
+                    <div className="grid grid-cols-2 gap-4">
+                      <img src={small1.src} alt={small1.alt} className={`${imgClass} aspect-[5/4]`} />
+                      <img src={small2.src} alt={small2.alt} className={`${imgClass} aspect-[5/4]`} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <img
+                      src={tall.src}
+                      alt={tall.alt}
+                      className={`${imgClass} aspect-[5/3] md:aspect-auto`}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-4">
+                    <img src={big2.src} alt={big2.alt} className={`${imgClass} aspect-[5/3]`} />
+                    <div className="grid grid-cols-2 gap-4">
+                      <img src={small3.src} alt={small3.alt} className={`${imgClass} aspect-[5/4]`} />
+                      <img src={small4.src} alt={small4.alt} className={`${imgClass} aspect-[5/4]`} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CALL TO ACTION */}
-      <section className="relative py-24 px-6 text-center">
+      <section className="relative py-16 px-6 md:px-16 text-center">
         <img
           src={ctaImage}
           alt="Happy dog"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 max-w-2xl mx-auto">
-          <h2 className="font-heading text-4xl md:text-5xl text-orange-400 mb-4">
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <h2 className="font-heading text-4xl md:text-6xl text-[#F7700A] mb-4">
             Ready to Treat Your Dog?
           </h2>
           <p className="text-white/90 text-lg mb-8">
@@ -471,7 +536,7 @@ const Home = () => {
           </p>
           <Link
             to="/events"
-            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-full shadow transition"
+            className="inline-flex items-center gap-2 bg-[#F7700A] hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-full shadow transition"
           >
             Explore Events <ArrowRight size={18} />
           </Link>

@@ -7,7 +7,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["'Baloo 2'", "cursive"],
+        heading: ["'Chewy'", "cursive"],
+        sans: [
+          "'Nunito Sans'",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "'Segoe UI'",
+          "Roboto",
+          "'Helvetica Neue'",
+          "Arial",
+          "sans-serif",
+        ],
       },
     },
   },
