@@ -351,7 +351,7 @@
 //     </div>
 //   );
 // }
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Profile from "./Profile";
 
@@ -375,32 +375,8 @@ export default function EmployeeDashboard() {
   const token = localStorage.getItem("token");
   const employeeId = storedUser.id || storedUser._id || localStorage.getItem("userId") || null;
 
-  useEffect(() => {
-    const role = localStorage.getItem("role");
-    if (!token || !employeeId || (role !== "employee" && role !== "admin")) {
-      navigate("/login");
-      return;
-    }
-
-    fetchEvents();
-  }, [token, employeeId, navigate]);
-
-  // ✅ Logout function
-  const handleLogout = async () => {
-    try {
-      await fetch("http://localhost:4000/api/auth/logout", { method: "POST" });
-    } catch (err) {
-      console.error("Logout failed:", err);
-    }
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("role");
-    localStorage.removeItem("user");
-    navigate("/login"); // redirect to login
-  };
-
   // ✅ Fetch only events created by this employee
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     if (!token || !employeeId) return;
 
     try {
@@ -415,6 +391,30 @@ export default function EmployeeDashboard() {
     } catch (err) {
       console.error("Failed to fetch events", err);
     }
+  }, [API_BASE, token, employeeId]);
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (!token || !employeeId || (role !== "employee" && role !== "admin")) {
+      navigate("/login");
+      return;
+    }
+
+    fetchEvents();
+  }, [fetchEvents, navigate, token, employeeId]);
+
+  // ✅ Logout function
+  const handleLogout = async () => {
+    try {
+      await fetch("http://localhost:4000/api/auth/logout", { method: "POST" });
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
+    navigate("/login"); // redirect to login
   };
 
   // ✅ Handle input change
