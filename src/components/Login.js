@@ -635,6 +635,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:4000/api";
+
 const Login = ({ onClose, onLoginSuccess }) => { // Changed prop name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -648,7 +650,7 @@ const Login = ({ onClose, onLoginSuccess }) => { // Changed prop name
     setError("");
     
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", {
+      const res = await axios.post(`${API_BASE}/auth/login`, {
         email,
         password,
       });

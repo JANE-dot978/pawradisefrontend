@@ -406,7 +406,7 @@ export default function EmployeeDashboard() {
   // ✅ Logout function
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:4000/api/auth/logout", { method: "POST" });
+      await fetch(`${API_BASE}/auth/logout`, { method: "POST" });
     } catch (err) {
       console.error("Logout failed:", err);
     }

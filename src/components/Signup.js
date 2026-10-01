@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:4000/api";
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,7 +22,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/register", {
+      const res = await axios.post(`${API_BASE}/auth/register`, {
         ...formData,
         role: "user",
       });
